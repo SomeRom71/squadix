@@ -1,0 +1,18 @@
+@import '../../assets/styles/variables';
+
+.button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+    padding: 2px 8px;
+    background-color: $primary-color;
+    min-height: 24px;
+    box-shadow: 0px 6px 8px 0px rgba(34, 60, 80, 0.4);
+    transition: filter .2s ease;
+    &:hover {
+        filter: brightness(90%);
+    }
+}
