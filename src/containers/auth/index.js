@@ -9,6 +9,7 @@ const AuthContainer = ({children}) => {
       <div className={s.form}>
         <Logo className={s.logo} />
         {children}
+        <span className={s.copyright}>© Squadix, 2021.</span>
       </div>
     </div>
   )

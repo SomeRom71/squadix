@@ -1,11 +1,11 @@
 import React from 'react';
 import AuthContainer from '../containers/auth';
-import LoginForm from '../components/auth-forms/login-form';
+import RegisterForm from '../components/auth-forms/regiter-form';
 
 const Login = () => {
   return (
     <AuthContainer>
-      <LoginForm />
+      <RegisterForm />
     </AuthContainer>
   )
 }

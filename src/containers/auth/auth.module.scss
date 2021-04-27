@@ -7,6 +7,8 @@
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -20,4 +22,12 @@
 .logo {
   justify-content: center;
   margin-bottom: 40px;
+}
+
+.copyright {
+  display: block;
+  text-align: center;
+  color: gray;
+  margin-top: auto;
+  font-size: 12px;
 }
