@@ -5,15 +5,17 @@ import Button from '../button';
 import Input from '../input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '../../helpers/validation-schemas';
-import { createUser } from '../../api/auth';
+import { createUser } from '../../services/auth';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
+import { useHistory } from 'react-router-dom';
 
 import s from './auth-form.module.scss';
 
 const RegisterForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   const { handleSubmit, formState: { errors }, setValue } = useForm({
     reValidateMode: 'onSubmit',
@@ -25,7 +27,7 @@ const RegisterForm = () => {
       setIsLoading(true);
       await createUser(data);
       toast.success('Пользователь успешно зарегистрирован');
-      
+      history.push('/login');
     } catch (e) {
       toast.error(ERRORS[e.response.data.message] || e.response.data.message);
     } finally {

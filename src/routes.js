@@ -1,19 +1,20 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './pages/login';
 import Register from './pages/register';
-import Home from './pages/news';
+import Events from './pages/events';
+import Stock from './pages/stock';
+import News from './pages/news';
 
 const Routes = () => (
   <Switch>
-    <Route path="/login">
-      <Login />
-    </Route>
-    <Route path="/register">
-      <Register />
-    </Route>
-    <Route exact path="/">
-      <Home />
+    <Route path="/login" component={Login} />
+    <Route path="/register" component={Register} />
+    <Route path="/events" component={Events} />
+    <Route path="/stock" component={Stock} />
+    <Route path="/news" component={News} />
+    <Route path="/">
+      <Redirect to="/news" />
     </Route>
   </Switch>
 );

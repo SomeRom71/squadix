@@ -5,14 +5,19 @@ import Button from '../button';
 import Input from '../input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../../helpers/validation-schemas';
-import { authUser } from '../../api/auth';
+import { authUser } from '../../services/auth';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setMe } from '../../actions/user-actions';
 
 import s from './auth-form.module.scss';
 
 const LoginForm = () => {
 
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
   const { handleSubmit, formState: { errors }, setValue } = useForm({
@@ -23,9 +28,11 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
-      await authUser(data);
+      const response = await authUser(data);
+      localStorage.setItem('accessToken', response.data.accessToken);
+      history.push('/');
     } catch (e) {
-      toast.error(ERRORS[e.response.data.message])
+      toast.error(ERRORS[e?.response?.data?.message])
     } finally {
       setIsLoading(false);
     }

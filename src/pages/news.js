@@ -1,10 +1,8 @@
 import React from 'react';
+import NewsContainer from '../containers/news';
 
-const Home = () => {
-  
-  return (
-    <div>home</div>
-  )
-}
+const News = () => (
+  <NewsContainer />
+);
 
-export default Home;
+export default News;

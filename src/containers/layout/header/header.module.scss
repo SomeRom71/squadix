@@ -1,0 +1,44 @@
+@import "../../../assets/styles/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  background: $primary-color;
+  position: fixed;
+  height: 60px;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 0 32px;
+
+  :global {
+    .active-nav {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #fff;
+  text-decoration: none;
+  height: 100%;
+  transition: background-color ease 0.3s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.logo {
+  margin-right: 20px;
+  img {
+    width: 40px;
+  }
+
+  span {
+    display: none;
+  }
+}

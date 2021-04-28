@@ -1,0 +1,33 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.noAvatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+  color: #fff;
+  font-weight: bolder;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  background-color: rgb(189, 189, 189);
+  margin-right: 12px;
+}
+
+.img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.name {
+  color: #fff;
+  font-weight: 600;
+  text-transform: capitalize;
+}
