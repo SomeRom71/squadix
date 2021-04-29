@@ -1,21 +1,31 @@
 import React, { useEffect } from 'react';
 import Layout from '../layout';
 import Feed from '../feed';
-import { setNews } from '../../actions/news-actions';
+import { setNews, clearNews } from '../../actions/news-actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const NewsContainer = () => {
 
   const dispatch = useDispatch();
-  const news = useSelector(state => state.news);
+  const {content, totalPages, currentPage} = useSelector(state => state.news);
 
   useEffect(() => {
-    dispatch(setNews());
-  }, [])
+    dispatch(setNews(0));
+    return () => dispatch(clearNews());
+  }, []);
+
+  const onChangePage = (page) => {
+    dispatch(setNews(page));
+  }
 
   return (
     <Layout>
-      <Feed list={news?.content} />
+      <Feed 
+        list={content}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onChangePage={onChangePage}
+      />
     </Layout>
   )
 

@@ -4,14 +4,14 @@ const initialState = {
   content: [],
 };
 
-export default function newsReducer(state = initialState, action) {
+export default function eventsReducer(state = initialState, action) {
   switch (action.type) {
-    case 'setNews':
+    case 'setEvents':
       return {
         ...state,
         ...action.payload,
       };
-    case 'clearNews':
+    case 'clearEvents':
       return {
         ...state,
         content: [],

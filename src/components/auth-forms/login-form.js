@@ -9,15 +9,12 @@ import { authUser } from '../../services/auth';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setMe } from '../../actions/user-actions';
 
 import s from './auth-form.module.scss';
 
 const LoginForm = () => {
 
   const history = useHistory();
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
   const { handleSubmit, formState: { errors }, setValue } = useForm({
