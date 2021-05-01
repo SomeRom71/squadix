@@ -21,7 +21,6 @@ const Layout = ({children}) => {
       await configureInterceptors(history, token);
       await dispatch(setMe(token));
     })()
-    console.log('layout');
   }, [])
 
   return (

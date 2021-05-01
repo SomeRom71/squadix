@@ -17,10 +17,14 @@
 
 .link {
   text-decoration: none;
+  margin-right: auto;
 }
 
 .header {
   margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer {
@@ -38,6 +42,19 @@
 .likes {
   display: inline-flex;
   align-items: center;
+  text-decoration: none;
+  color: #000;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .likes {
@@ -47,11 +64,20 @@
 .likeIcon {
   transition: fill 0.2s ease;
 
+  &.active,
   &:hover {
     fill: rgb(245, 0, 87);
   }
+}
 
-  &.active {
-    fill: rgb(245, 0, 87);
+.headerBtn {
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: #000;
   }
 }

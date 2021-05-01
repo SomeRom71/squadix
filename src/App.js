@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 
 import './assets/styles/app.scss';
+import Modals from './containers/modals';
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
     <div className="main">
       <ToastContainer />
       <Routes />
+      <Modals />
     </div>
   );
 }

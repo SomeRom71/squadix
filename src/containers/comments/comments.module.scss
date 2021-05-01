@@ -1,0 +1,23 @@
+@import "../../assets/styles/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add {
+  font-size: 16px;
+  color: $primary-color;
+  margin-left: auto;
+  display: block;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {
+  margin-bottom: 32px;
+}

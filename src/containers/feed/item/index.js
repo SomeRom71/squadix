@@ -1,11 +1,14 @@
 import React from 'react';
 import cn from 'classnames';
 import UserPreview from '../../../components/user-preview';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaComment, FaHeart } from "react-icons/fa";
 import Youtube from 'react-youtube';
+import { FaRegCopy, FaExternalLinkAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 import s from './item.module.scss';
+
 
 const FeedItem = ({
   info: {
@@ -20,9 +23,20 @@ const FeedItem = ({
     commentsCount,
     videoUrl,
     liked,
-  }, 
+  },
+  onLike, 
+  isPost,
   className
 }) => {
+
+  const { pathname } = useLocation(); 
+  const backURL = pathname.split('/');
+
+  const copyLink = () => {
+    const linkToCopy = isPost ? pathname : `${pathname}/${id}`;
+    navigator.clipboard.writeText(linkToCopy);
+    toast.success('Ссылка скопирована.');
+  }
 
   return (
     <div className={cn(s.item, className)}>
@@ -38,9 +52,22 @@ const FeedItem = ({
             localClassName="post"
           />
         </Link>
-
+        <button
+          className={s.headerBtn}
+          title="Скопировать URL"
+          onClick={() => copyLink()}
+        >
+          <FaRegCopy />
+        </button>
+        {<Link
+          className={s.headerBtn}
+          to={isPost ? `/${backURL[1]}` : `${pathname}/${id}`}
+          title={`Перейти к ${isPost ? 'ленте' : 'посту'}`} 
+        >
+          <FaExternalLinkAlt />
+        </Link>}
       </div>
-      {imageUrls.length 
+      {imageUrls?.length 
         ? <img 
             className={s.img} 
             src={imageUrls[0]}
@@ -53,19 +80,28 @@ const FeedItem = ({
           />
         : null}
       <p>
-        {description.length > 255 ? description.slice(0, 255) + '...' : description}
+        {description?.length > 255 ? description.slice(0, 255) + '...' : description}
       </p>
       <div className={s.footer}>
-        <div className={s.comments}>
-          <FaComment
-            className={s.commentIcon} 
-          />
-          {commentsCount}
-        </div>
+        {!isPost && 
+          <Link
+            to={`${pathname}/${id}`} 
+            className={s.comments}
+          >
+            <FaComment
+              className={s.commentIcon} 
+            />
+            {commentsCount}
+          </Link>
+        }
         <div className={s.likes}>
-          <FaHeart 
-            className={cn(s.likeIcon, {[s.active]: liked})}
-          />
+          <button
+            onClick={() => onLike(id)}
+          >
+            <FaHeart 
+              className={cn(s.likeIcon, {[s.active]: liked})}
+            />
+          </button>
           {likesCount}
         </div>
       </div>

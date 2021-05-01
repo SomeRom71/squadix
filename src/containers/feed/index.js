@@ -3,11 +3,13 @@ import FeedItem from './item';
 import ReactPaginate from 'react-paginate';
 import s from './feed.module.scss';
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
+import Loader from '../../components/loader';
 
-const Feed = ({list, totalPages, onChangePage}) => {
+const Feed = ({list, totalPages, onChangePage, isLoading, onLike}) => {
 
   return (
     <div className={s.feed}>
+      {isLoading && <Loader preloader />}
       {totalPages > 1 &&
         <ReactPaginate 
           pageCount={totalPages}
@@ -22,6 +24,7 @@ const Feed = ({list, totalPages, onChangePage}) => {
       }
       {list?.map(item => (
         <FeedItem
+          onLike={onLike}
           className={s.item}
           key={item.id} 
           info={item} 
