@@ -1,0 +1,23 @@
+.filter {
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  width: 100%;
+  max-width: 255px;
+  border-right: 1px solid gray;
+  padding: 12px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 60px;
+}
+
+.checkbox {
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin-bottom: 16px;
+}

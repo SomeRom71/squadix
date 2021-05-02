@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from './header';
+import cn from 'classnames';
 import { configureInterceptors } from '../../services/axios';
 import { useHistory } from 'react-router-dom';
 import { setMe } from '../../actions/user-actions';
@@ -8,7 +9,7 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import s from './layout.module.scss';
 
-const Layout = ({children}) => {
+const Layout = ({children, className}) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Layout = ({children}) => {
   }, [])
 
   return (
-    <div className={s.container}>
+    <div className={cn(s.container, className)}>
       <Header />
       {children}
     </div>
