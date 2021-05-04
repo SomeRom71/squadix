@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../../components/logo';
 import UserPreview from '../../../components/user-preview';
 import { useSelector } from 'react-redux';
+import { NEWS_PATH, EVENTS_PATH, STOCK_PATH, HOME_PATH } from '../../../constants/routes.constants';
 
 import s from './header.module.scss';
 
@@ -12,16 +13,16 @@ const Header = () => {
 
   return (
     <header className={s.header}>
-      <Link to='/'>
+      <Link to={HOME_PATH}>
         <Logo className={s.logo} />
       </Link>
-      <NavLink to="/news" className={s.link} activeClassName="active-nav">
+      <NavLink to={NEWS_PATH} className={s.link} activeClassName="active-nav">
         Новости
       </NavLink>
-      <NavLink to="/events" className={s.link} activeClassName="active-nav">
+      <NavLink to={EVENTS_PATH} className={s.link} activeClassName="active-nav">
         События
       </NavLink>
-      <NavLink to="/stock" className={s.link} activeClassName="active-nav">
+      <NavLink to={STOCK_PATH} className={s.link} activeClassName="active-nav">
         Барахолка
       </NavLink>
       <UserPreview 

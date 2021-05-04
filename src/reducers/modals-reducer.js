@@ -1,10 +1,13 @@
+import { CHANGE_MODALS_STATE } from '../constants/actions.constants';
+
 const initialState = {
   commentModal: {},
+  postModal: {},
 }
 
 export default function modalsReducer(state = initialState, action) {
   switch (action.type) {
-    case 'changeModalsState':
+    case CHANGE_MODALS_STATE:
       return {
         ...state,
         ...action.payload,

@@ -9,6 +9,7 @@ import { authUser } from '../../services/auth';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
 import { useHistory } from 'react-router-dom';
+import { REGISTER_PATH, HOME_PATH } from '../../constants/routes.constants';
 
 import s from './auth-form.module.scss';
 
@@ -27,7 +28,7 @@ const LoginForm = () => {
       setIsLoading(true);
       const response = await authUser(data);
       localStorage.setItem('accessToken', response.data.accessToken);
-      history.push('/');
+      history.push(HOME_PATH);
     } catch (e) {
       toast.error(ERRORS[e?.response?.data?.message])
     } finally {
@@ -60,7 +61,7 @@ const LoginForm = () => {
       </form>
       <Link
         className={s.link} 
-        to="/register"
+        to={REGISTER_PATH}
       >
         Все еще нет аккаунта? Зарегистрируйтесь.
       </Link>

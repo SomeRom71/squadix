@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { LOGIN_PATH } from '../constants/routes.constants';
 
 export const configureInterceptors = (history, token) => {
 
@@ -13,7 +14,7 @@ export const configureInterceptors = (history, token) => {
     const originalRequest = error.config;
     if ((error.response.status === 403 || error.response.status === 401) && !originalRequest._retry) {
       localStorage.removeItem('accessToken');
-      history.push('/login');
+      history.push(LOGIN_PATH);
     }
     return Promise.reject(error);
   });

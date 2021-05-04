@@ -9,6 +9,7 @@ import { createUser } from '../../services/auth';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
 import { useHistory } from 'react-router-dom';
+import { LOGIN_PATH } from '../../constants/routes.constants';
 
 import s from './auth-form.module.scss';
 
@@ -27,7 +28,7 @@ const RegisterForm = () => {
       setIsLoading(true);
       await createUser(data);
       toast.success('Пользователь успешно зарегистрирован');
-      history.push('/login');
+      history.push(LOGIN_PATH);
     } catch (e) {
       toast.error(ERRORS[e.response.data.message] || e.response.data.message);
     } finally {
@@ -79,7 +80,7 @@ const RegisterForm = () => {
       </form>
       <Link
         className={s.link} 
-        to='/login'
+        to={LOGIN_PATH}
       >
         Есть аккаунт? Войдите.
       </Link>

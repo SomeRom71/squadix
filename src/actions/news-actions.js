@@ -1,10 +1,20 @@
 import { getNews, likeNews, likeNewsComment, getNewsPost, getNewsPostComments, addNewsPostComment } from '../services/news';
+import {
+  SET_NEWS,
+  SET_NEWS_POST,
+  SET_NEWS_POST_COMMENTS,
+  CLEAR_NEWS_POST,
+  LIKE_NEWS,
+  SET_NEWS_COMMENT,
+  LIKE_NEWS_POST,
+  CLEAR_NEWS,
+} from '../constants/actions.constants';
 
 export const setNews = (page) => {
   return async (dispatch) => {
     const news = await getNews(page);
     dispatch({
-      type: 'setNews',
+      type: SET_NEWS,
       payload: news?.data
     })
   }
@@ -14,7 +24,7 @@ export const setNewsPost = (id) => {
   return async (dispatch) => {
     const post = await getNewsPost(id);
     dispatch({
-      type: 'setNewsPost',
+      type: SET_NEWS_POST,
       payload: post?.data
     })
   }
@@ -24,7 +34,7 @@ export const setNewsPostComments = (id) => {
   return async (dispatch) => {
     const comments = await getNewsPostComments(id);
     dispatch({
-      type: 'setNewsPostComments',
+      type: SET_NEWS_POST_COMMENTS,
       payload: comments?.data
     })
   }
@@ -33,7 +43,7 @@ export const setNewsPostComments = (id) => {
 export const clearNewsPost = () => {
   return async (dispatch) => {
     dispatch({
-      type: 'clearNewsPost',
+      type: CLEAR_NEWS_POST,
       payload: {}
     })
   }
@@ -52,7 +62,7 @@ export const toggleLikeNews = (id) => {
     });
 
     dispatch({
-      type: 'likeNews',
+      type: LIKE_NEWS,
       payload: newNewsState
     })
   }
@@ -71,7 +81,7 @@ export const toggleLikeNewsComment = (id) => {
     });
     
     dispatch({
-      type: 'setNewsComment',
+      type: SET_NEWS_COMMENT,
       payload: newCommentsState
     })
   }
@@ -85,7 +95,7 @@ export const setNewsPostComment = (id, data) => {
     const newCommentsState = [...commentsList, comment.data];
     
     dispatch({
-      type: 'setNewsComment',
+      type: SET_NEWS_COMMENT,
       payload: newCommentsState
     })
   }
@@ -97,7 +107,7 @@ export const toggleLikePostNews = (id) => {
     const newsPost = getState().news.post;
 
     dispatch({
-      type: 'likeNewsPost',
+      type: LIKE_NEWS_POST,
       payload: {...newsPost, ...likes.data}
     })
   }
@@ -106,7 +116,7 @@ export const toggleLikePostNews = (id) => {
 export const clearNews = () => {
   return async (dispatch) => {
     dispatch({
-      type: 'clearNews',
+      type: CLEAR_NEWS,
       payload: {}
     })
   }

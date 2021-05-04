@@ -1,3 +1,14 @@
+import {
+  SET_EVENTS,
+  SET_EVENTS_POST,
+  SET_EVENTS_POST_COMMENTS,
+  CLEAR_EVENTS_POST,
+  SET_EVENT_COMMENT,
+  LIKE_EVENT,
+  LIKE_EVENTS_POST,
+  CLEAR_EVENTS,
+} from '../constants/actions.constants';
+
 const initialState = {
   currentPage: 0,
   totalPages: 0,
@@ -8,27 +19,27 @@ const initialState = {
 
 export default function eventsReducer(state = initialState, action) {
   switch (action.type) {
-    case 'setEvents':
+    case SET_EVENTS:
       return {
         ...state,
         ...action.payload,
       };
-    case 'setEventsPost':
+    case SET_EVENTS_POST:
       return {
         ...state,
         post: action.payload,
       };
-    case 'setEventsPostComments':
+    case SET_EVENTS_POST_COMMENTS:
       return {
         ...state,
         comments: action.payload,
       };
-    case 'likeEventsPost':
+    case LIKE_EVENTS_POST:
       return {
         ...state,
         post: action.payload,
       };
-    case 'setEventComment':
+    case SET_EVENT_COMMENT:
       return {
         ...state,
         comments: {
@@ -36,17 +47,17 @@ export default function eventsReducer(state = initialState, action) {
           content: action.payload
         },
       };
-    case 'likeEvent':
+    case LIKE_EVENT:
       return {
         ...state,
         content: action.payload,
       };
-    case 'clearEventsPost':
+    case CLEAR_EVENTS_POST:
       return {
         ...state,
         post: {},
       };
-    case 'clearEvents':
+    case CLEAR_EVENTS:
       return {
         ...state,
         content: [],

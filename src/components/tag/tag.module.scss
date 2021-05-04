@@ -1,0 +1,9 @@
+@import "../../assets/styles/variables";
+
+.tag {
+  border-radius: 14px;
+  font-size: 14px;
+  border: 2px solid $primary-color;
+  padding: 4px 8px;
+  color: $primary-color;
+}

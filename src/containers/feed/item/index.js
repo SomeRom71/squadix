@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 import UserPreview from '../../../components/user-preview';
 import { Link, useLocation } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { FaComment, FaHeart } from "react-icons/fa";
 import Youtube from 'react-youtube';
 import { FaRegCopy, FaExternalLinkAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import FSLightbox from 'fslightbox-react';
 
 import s from './item.module.scss';
 
@@ -31,6 +32,7 @@ const FeedItem = ({
 
   const { pathname } = useLocation(); 
   const backURL = pathname.split('/');
+  const [isSliderShow, setIsSliderShow] = useState(false);
 
   const copyLink = () => {
     const linkToCopy = isPost ? pathname : `${pathname}/${id}`;
@@ -67,18 +69,27 @@ const FeedItem = ({
           <FaExternalLinkAlt />
         </Link>}
       </div>
-      {imageUrls?.length 
-        ? <img 
-            className={s.img} 
-            src={imageUrls[0]}
-            loading="lazy"
-          /> 
-        : videoUrl
-        ? <Youtube 
-            videoId={videoUrl}
-            className={s.video}
-          />
+      <div className={s.media}>
+        {imageUrls?.length 
+          ? <>
+              <img 
+                className={s.img} 
+                src={imageUrls[0]}
+                onClick={() => setIsSliderShow(!isSliderShow)}
+              /> 
+              <FSLightbox
+                toggler={isSliderShow}
+                sources={imageUrls}
+                type="image"
+              />
+            </>
+          : videoUrl
+          ? <Youtube 
+              videoId={videoUrl}
+              className={s.video}
+            />
         : null}
+      </div>
       <p>
         {description?.length > 255 ? description.slice(0, 255) + '...' : description}
       </p>

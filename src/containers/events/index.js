@@ -5,6 +5,8 @@ import { setEvents, clearEvents, toggleLikeEvent } from '../../actions/events-ac
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
+import { openModal } from '../../actions/modals-actions';
+import AddButton from '../../components/add-btn';
 
 const EventsContainer = () => {
 
@@ -36,8 +38,19 @@ const EventsContainer = () => {
     }
   }
 
+  const addPostHandler = () => {
+
+  }
+
+  const openPostModal = () => {
+    dispatch(openModal('postModal', {
+      addPost: (data) => addPostHandler(data),
+    }))
+  }
+
   return (
     <Layout>
+      <AddButton onClick={openPostModal} />
       <Feed
         onLike={eventLikeHandler}
         isLoading={isLoading}

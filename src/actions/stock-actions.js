@@ -1,10 +1,16 @@
-import { getCategories, getProducts } from '../services/stock';
+import { getCategories, getProducts, getProduct } from '../services/stock';
+import {
+  SET_CATEGORIES,
+  SET_FILTERS,
+  SET_PRODUCTS,
+  SET_POST,
+} from '../constants/actions.constants';
 
 export const setCategories = () => {
   return async (dispatch) => {
     const categories = await getCategories();
     dispatch({
-      type: 'setCategories',
+      type: SET_CATEGORIES,
       payload: categories?.data
     })
   }
@@ -13,7 +19,7 @@ export const setCategories = () => {
 export const setFilters = (filters) => {
   return async (dispatch) => {
     dispatch({
-      type: 'setFilters',
+      type: SET_FILTERS,
       payload: filters
     })
   }
@@ -25,8 +31,28 @@ export const setProducts = (page) => {
     const products = await getProducts(filterArr, page);
 
     dispatch({
-      type: 'setProducts',
+      type: SET_PRODUCTS,
       payload: products?.data
+    })
+  }
+}
+
+export const setStockPost = (id) => {
+  return async (dispatch) => {
+    const product = await getProduct(id);
+
+    dispatch({
+      type: SET_POST,
+      payload: product?.data
+    })
+  }
+}
+
+export const clearStockPost = (id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: SET_POST,
+      payload: {}
     })
   }
 }

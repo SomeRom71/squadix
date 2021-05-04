@@ -5,6 +5,8 @@ import { setNews, clearNews, toggleLikeNews } from '../../actions/news-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
+import { openModal } from '../../actions/modals-actions';
+import AddButton from '../../components/add-btn';
 
 const NewsContainer = () => {
 
@@ -36,8 +38,19 @@ const NewsContainer = () => {
     }
   }
 
+  const addPostHandler = () => {
+
+  }
+
+  const openPostModal = () => {
+    dispatch(openModal('postModal', {
+      addPost: (data) => addPostHandler(data),
+    }))
+  }
+
   return (
     <Layout>
+      <AddButton onClick={openPostModal} />
       <Feed 
         onLike={NewsLikeHandler}
         isLoading={isLoading}

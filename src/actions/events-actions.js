@@ -6,12 +6,22 @@ import {
   addEventsPostComment,
   likeEvent,
 } from '../services/events';
+import {
+  SET_EVENTS,
+  SET_EVENTS_POST,
+  SET_EVENTS_POST_COMMENTS,
+  CLEAR_EVENTS_POST,
+  SET_EVENT_COMMENT,
+  LIKE_EVENT,
+  LIKE_EVENTS_POST,
+  CLEAR_EVENTS,
+} from '../constants/actions.constants';
 
 export const setEvents = (page) => {
   return async (dispatch) => {
     const events = await getEvents(page);
     dispatch({
-      type: 'setEvents',
+      type: SET_EVENTS,
       payload: events?.data
     })
   }
@@ -21,7 +31,7 @@ export const setEventsPost = (id) => {
   return async (dispatch) => {
     const post = await getEventPost(id);
     dispatch({
-      type: 'setEventsPost',
+      type: SET_EVENTS_POST,
       payload: post?.data
     })
   }
@@ -31,7 +41,7 @@ export const setEventsPostComments = (id) => {
   return async (dispatch) => {
     const comments = await getEventsPostComments(id);
     dispatch({
-      type: 'setEventsPostComments',
+      type: SET_EVENTS_POST_COMMENTS,
       payload: comments?.data
     })
   }
@@ -40,7 +50,7 @@ export const setEventsPostComments = (id) => {
 export const clearEventsPost = () => {
   return async (dispatch) => {
     dispatch({
-      type: 'clearEventsPost',
+      type: CLEAR_EVENTS_POST,
       payload: {}
     })
   }
@@ -59,7 +69,7 @@ export const toggleLikeEventsComment = (id) => {
     });
     
     dispatch({
-      type: 'setEventComment',
+      type: SET_EVENT_COMMENT,
       payload: newCommentsState
     })
   }
@@ -73,7 +83,7 @@ export const setEventsPostComment = (id, data) => {
     const newCommentsState = [...commentsList, comment.data];
     
     dispatch({
-      type: 'setEventComment',
+      type: SET_EVENT_COMMENT,
       payload: newCommentsState
     })
   }
@@ -92,7 +102,7 @@ export const toggleLikeEvent = (id) => {
     });
 
     dispatch({
-      type: 'likeEvent',
+      type: LIKE_EVENT,
       payload: newEventsState
     })
   }
@@ -104,7 +114,7 @@ export const toggleLikePostEvent = (id) => {
     const eventPost = getState().events.post;
 
     dispatch({
-      type: 'likeEventsPost',
+      type: LIKE_EVENTS_POST,
       payload: {...eventPost, ...likes.data}
     })
   }
@@ -113,7 +123,7 @@ export const toggleLikePostEvent = (id) => {
 export const clearEvents = () => {
   return async (dispatch) => {
     dispatch({
-      type: 'clearEvents',
+      type: CLEAR_EVENTS,
       payload: {}
     })
   }

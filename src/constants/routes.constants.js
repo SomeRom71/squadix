@@ -1,0 +1,9 @@
+export const HOME_PATH = '/';
+export const LOGIN_PATH = '/login';
+export const REGISTER_PATH = '/register';
+export const EVENTS_PATH = '/events';
+export const STOCK_PATH = '/stock';
+export const NEWS_PATH = '/news';
+export const NEWS_POST_PATH = '/news/:id';
+export const EVENTS_POST_PATH = '/events/:id';
+export const STOCK_POST_PATH = '/stock/:id';

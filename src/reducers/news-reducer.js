@@ -1,3 +1,14 @@
+import {
+  SET_NEWS,
+  SET_NEWS_POST,
+  SET_NEWS_POST_COMMENTS,
+  CLEAR_NEWS_POST,
+  LIKE_NEWS,
+  SET_NEWS_COMMENT,
+  LIKE_NEWS_POST,
+  CLEAR_NEWS,
+} from '../constants/actions.constants';
+
 const initialState = {
   currentPage: 0,
   totalPages: 0,
@@ -8,32 +19,32 @@ const initialState = {
 
 export default function newsReducer(state = initialState, action) {
   switch (action.type) {
-    case 'setNews':
+    case SET_NEWS:
       return {
         ...state,
         ...action.payload,
       };
-    case 'setNewsPost':
+    case SET_NEWS_POST:
       return {
         ...state,
         post: action.payload,
       };
-    case 'setNewsPostComments':
+    case SET_NEWS_POST_COMMENTS:
       return {
         ...state,
         comments: action.payload,
       };
-    case 'likeNews':
+    case LIKE_NEWS:
       return {
         ...state,
         content: action.payload,
       };
-    case 'likeNewsPost':
+    case LIKE_NEWS_POST:
       return {
         ...state,
         post: action.payload,
       };
-    case 'setNewsComment':
+    case SET_NEWS_COMMENT:
       return {
         ...state,
         comments: {
@@ -41,12 +52,12 @@ export default function newsReducer(state = initialState, action) {
           content: action.payload
         },
       };
-    case 'clearNews':
+    case CLEAR_NEWS:
       return {
         ...state,
         content: [],
       };
-    case 'clearNewsPost':
+    case CLEAR_NEWS_POST:
       return {
         ...state,
         post: {},

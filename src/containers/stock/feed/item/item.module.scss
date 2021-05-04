@@ -1,3 +1,5 @@
+@import "../../../../assets/styles/variables";
+
 .item {
   display: block;
   padding: 12px 16px;
@@ -7,12 +9,25 @@
   &:not(:last-child) {
     margin-bottom: 22px;
   }
+  &.promo {
+    background-color: rgb(247, 247, 148);
+  }
+}
+
+.media {
+  overflow: hidden;
 }
 
 .img {
   width: 100%;
   max-height: 450px;
   object-fit: cover;
+
+  cursor: pointer;
+  transition: transform 0.4s ease;
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .video {
@@ -22,6 +37,18 @@
 .link {
   text-decoration: none;
   margin-right: auto;
+}
+
+.showPhone {
+  font-size: 16px;
+  font-weight: 600;
+  color: $primary-color;
+}
+
+.phone {
+  color: $primary-color;
+  text-decoration: underline;
+  margin-right: 12px;
 }
 
 .header {
@@ -34,6 +61,11 @@
 .footer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.tag {
+  margin-right: 12px;
 }
 
 .commentIcon,
@@ -84,4 +116,10 @@
     height: 18px;
     color: #000;
   }
+}
+
+.price {
+  color: $primary-color;
+  font-size: 16px;
+  font-weight: 600;
 }
