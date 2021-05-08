@@ -5,6 +5,7 @@ import {
   likeEventsComment,
   addEventsPostComment,
   likeEvent,
+  addNewEvent
 } from '../services/events';
 import {
   SET_EVENTS,
@@ -15,6 +16,7 @@ import {
   LIKE_EVENT,
   LIKE_EVENTS_POST,
   CLEAR_EVENTS,
+  ADD_EVENTS_POST
 } from '../constants/actions.constants';
 
 export const setEvents = (page) => {
@@ -33,6 +35,16 @@ export const setEventsPost = (id) => {
     dispatch({
       type: SET_EVENTS_POST,
       payload: post?.data
+    })
+  }
+}
+
+export const addNewEvents = (data) => {
+  return async (dispatch) => {
+    const newEvent = await addNewEvent(data);
+    dispatch({
+      type: ADD_EVENTS_POST,
+      payload: newEvent?.data
     })
   }
 }

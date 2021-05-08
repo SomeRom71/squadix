@@ -12,6 +12,10 @@ export const getNewsPost = (id) => {
   return axios.get(`https://api.squadix.co/posts/${id}`)
 }
 
+export const addNewsPost = (data) => {
+  return axios.post(`https://api.squadix.co/posts`, data)
+}
+
 export const likeNews = (id) => {
   return axios.put(`https://api.squadix.co/posts/${id}/like`)
 }

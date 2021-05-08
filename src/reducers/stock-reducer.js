@@ -3,6 +3,7 @@ import {
   SET_FILTERS,
   SET_PRODUCTS,
   SET_POST,
+  ADD_NEW_PRODUCT
 } from '../constants/actions.constants';
 
 const initialState = {
@@ -35,6 +36,14 @@ export default function stockReducer(state = initialState, action) {
       return {
         ...state,
         post: action.payload,
+      };
+    case ADD_NEW_PRODUCT:
+      return {
+        ...state,
+        content: [
+          action.payload,
+          ...state.content
+        ],
       };
     default:
       return state;

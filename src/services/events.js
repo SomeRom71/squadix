@@ -12,6 +12,10 @@ export const getEventPost = (id) => {
   return axios.get(`https://api.squadix.co/events/${id}`)
 }
 
+export const addNewEvent = (data) => {
+  return axios.post(`https://api.squadix.co/events`, data)
+}
+
 export const likeEventsComment = (id) => {
   return axios.put(`https://api.squadix.co/events/comments/${id}/like`)
 }

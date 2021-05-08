@@ -3,6 +3,7 @@ import { CHANGE_MODALS_STATE } from '../constants/actions.constants';
 const initialState = {
   commentModal: {},
   postModal: {},
+  productModal: {},
 }
 
 export default function modalsReducer(state = initialState, action) {

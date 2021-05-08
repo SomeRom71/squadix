@@ -7,6 +7,7 @@ import {
   SET_NEWS_COMMENT,
   LIKE_NEWS_POST,
   CLEAR_NEWS,
+  ADD_NEWS_POST
 } from '../constants/actions.constants';
 
 const initialState = {
@@ -61,6 +62,14 @@ export default function newsReducer(state = initialState, action) {
       return {
         ...state,
         post: {},
+      };
+    case ADD_NEWS_POST:
+      return {
+        ...state,
+        content: [
+          action.payload,
+          ...state.content,
+        ],
       };
     default:
       return state;

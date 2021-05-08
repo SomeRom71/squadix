@@ -2,6 +2,7 @@ import React from 'react';
 import CommentItem from './item';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../actions/modals-actions';
+import { COMMENT_MODAL } from '../../constants/modal.constants';
 
 import s from './comments.module.scss';
 
@@ -10,7 +11,7 @@ const Comments = ({list, onLike, addComment}) => {
   const dispatch = useDispatch();
 
   const openCommentModal = () => {
-    dispatch(openModal('commentModal', {
+    dispatch(openModal(COMMENT_MODAL, {
       addComment: (data) => addComment(data),
     }))
   }

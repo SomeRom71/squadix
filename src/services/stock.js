@@ -18,3 +18,7 @@ export const getProducts = (filter, page) => {
 export const getProduct = (id) => {
   return axios.get(`https://api.squadix.co/products/${id}`)
 }
+
+export const addProduct = (data) => {
+  return axios.post(`https://api.squadix.co/products/`, data)
+}

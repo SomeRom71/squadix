@@ -29,7 +29,7 @@ const CommentModal = ({ closeModal, addComment }) => {
         <span className={s.error}>{errors?.text?.message}</span>
         <Button 
           text="Отправить"
-          type="submin"
+          type="submit"
         />
       </form>
     </Modal>

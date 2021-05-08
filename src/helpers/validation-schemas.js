@@ -21,3 +21,13 @@ export const registerSchema = yup.object().shape({
   phone: yup.string(),
 });
   
+export const postSchema = yup.object().shape({
+  description: yup.string().required('Введите описание'),
+});
+
+export const productSchema = yup.object().shape({
+  name: yup.string().required('Введите наименование товара'),
+  description: yup.string(),
+  price: yup.string().required('Введите цену'),
+  postalDeliveryAvailable: yup.bool().required('Обязательное поле')
+});

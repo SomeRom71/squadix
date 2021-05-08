@@ -7,6 +7,7 @@ import {
   LIKE_EVENT,
   LIKE_EVENTS_POST,
   CLEAR_EVENTS,
+  ADD_EVENTS_POST
 } from '../constants/actions.constants';
 
 const initialState = {
@@ -61,6 +62,14 @@ export default function eventsReducer(state = initialState, action) {
       return {
         ...state,
         content: [],
+      };
+    case ADD_EVENTS_POST:
+      return {
+        ...state,
+        content: [
+          action.payload,
+          ...state.content,
+        ],
       };
     default:
       return state;

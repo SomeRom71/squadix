@@ -8,6 +8,7 @@ export const SET_EVENT_COMMENT = 'setEventComment';
 export const LIKE_EVENT = 'likeEvent';
 export const LIKE_EVENTS_POST = 'likeEventsPost';
 export const CLEAR_EVENTS = 'clearEvents';
+export const ADD_EVENTS_POST = 'addEventsPost';
 
 // NEWS ACTIONS
 
@@ -19,6 +20,7 @@ export const LIKE_NEWS = 'likeNews';
 export const SET_NEWS_COMMENT = 'setNewsComment';
 export const LIKE_NEWS_POST = 'likeNewsPost';
 export const CLEAR_NEWS = 'clearNews';
+export const ADD_NEWS_POST = 'addNewsPost';
 
 // MODAL ACTIONS
 
@@ -30,6 +32,7 @@ export const SET_CATEGORIES = 'setCategories';
 export const SET_FILTERS = 'setFilters';
 export const SET_PRODUCTS = 'setProducts';
 export const SET_POST = 'setPost';
+export const ADD_NEW_PRODUCT = 'addNewProduct';
 
 // USER ACTIONS
 

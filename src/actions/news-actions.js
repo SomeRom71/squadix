@@ -1,4 +1,4 @@
-import { getNews, likeNews, likeNewsComment, getNewsPost, getNewsPostComments, addNewsPostComment } from '../services/news';
+import { getNews, likeNews, likeNewsComment, getNewsPost, addNewsPost, getNewsPostComments, addNewsPostComment } from '../services/news';
 import {
   SET_NEWS,
   SET_NEWS_POST,
@@ -8,6 +8,7 @@ import {
   SET_NEWS_COMMENT,
   LIKE_NEWS_POST,
   CLEAR_NEWS,
+  ADD_NEWS_POST
 } from '../constants/actions.constants';
 
 export const setNews = (page) => {
@@ -26,6 +27,16 @@ export const setNewsPost = (id) => {
     dispatch({
       type: SET_NEWS_POST,
       payload: post?.data
+    })
+  }
+}
+
+export const addNewPost = (data) => {
+  return async (dispatch) => {
+    const newPost = await addNewsPost(data);
+    dispatch({
+      type: ADD_NEWS_POST,
+      payload: newPost?.data
     })
   }
 }

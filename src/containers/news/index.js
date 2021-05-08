@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../layout';
 import Feed from '../feed';
-import { setNews, clearNews, toggleLikeNews } from '../../actions/news-actions';
+import { setNews, clearNews, toggleLikeNews, addNewPost } from '../../actions/news-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
+import { POST_MODAL } from '../../constants/modal.constants';
 import { openModal } from '../../actions/modals-actions';
 import AddButton from '../../components/add-btn';
 
@@ -38,13 +39,9 @@ const NewsContainer = () => {
     }
   }
 
-  const addPostHandler = () => {
-
-  }
-
   const openPostModal = () => {
-    dispatch(openModal('postModal', {
-      addPost: (data) => addPostHandler(data),
+    dispatch(openModal(POST_MODAL, {
+      addPost: (data) => dispatch(addNewPost(data)),
     }))
   }
 
