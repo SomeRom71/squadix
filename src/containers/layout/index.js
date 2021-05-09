@@ -7,8 +7,8 @@ import { setMe } from '../../actions/user-actions';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import 'moment/locale/ru';
+
 import s from './layout.module.scss';
-import AddButton from '../../components/add-btn';
 
 const Layout = ({children, className}) => {
 

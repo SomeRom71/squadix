@@ -6,8 +6,9 @@
   border-bottom: 2px solid #000;
   display: inline-flex;
   align-items: center;
-  transition: border-color .3s ease;
-  &:hover, &.active {
+  transition: border-color 0.3s ease;
+  &:hover,
+  &.active {
     border-color: $primary-color;
   }
 }
@@ -16,7 +17,7 @@
   height: 100%;
   width: 100%;
   background-color: transparent;
-  padding: 0 8px;
+  padding: 2px 8px;
 }
 
 .label {

@@ -7,3 +7,5 @@ export const NEWS_PATH = '/news';
 export const NEWS_POST_PATH = '/news/:id';
 export const EVENTS_POST_PATH = '/events/:id';
 export const STOCK_POST_PATH = '/stock/:id';
+export const PROFILE_PATH = '/profile/:id';
+export const ME_PATH = '/me';

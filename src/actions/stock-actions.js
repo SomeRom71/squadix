@@ -1,10 +1,9 @@
-import { getCategories, getProducts, getProduct, addProduct } from '../services/stock';
+import { getCategories, getProducts, getProduct } from '../services/stock';
 import {
   SET_CATEGORIES,
   SET_FILTERS,
   SET_PRODUCTS,
   SET_POST,
-  ADD_NEW_PRODUCT
 } from '../constants/actions.constants';
 
 export const setCategories = () => {
@@ -35,23 +34,6 @@ export const setProducts = (page) => {
       type: SET_PRODUCTS,
       payload: products?.data
     })
-  }
-}
-
-export const addNewProduct = (data) => {
-  return async (dispatch, getState) => {
-    const filterArr = getState().stock.filters;
-    const newProduct = await addProduct(data);
-
-    const isIncluded = filterArr.includes(newProduct?.data?.category);
-    
-    // if (isIncluded) {
-    //   dispatch({
-    //     type: ADD_NEW_PRODUCT,
-    //     payload: newProduct?.data
-    //   })
-    // }
-
   }
 }
 

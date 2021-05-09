@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../layout';
 import AddButton from '../../components/add-btn';
-import { setCategories, setProducts, addNewProduct } from '../../actions/stock-actions';
+import { setCategories, setProducts } from '../../actions/stock-actions';
+import { addProduct } from '../../services/stock';
 import { openModal } from '../../actions/modals-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Filter from './filter';
@@ -35,7 +36,7 @@ const StockContainer = () => {
   const openAddProductModal = () => {
     dispatch(openModal(PRODUCT_MODAL, {
       categories: categories,
-      addProduct: (data) => dispatch(addNewProduct(data)),
+      addProduct: (data) => addProduct(data),
     }))
   }
 

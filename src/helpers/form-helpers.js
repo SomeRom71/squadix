@@ -1,7 +1,6 @@
 export const fileToDataUri = (image) => {
   return new Promise((res) => {
     const reader = new FileReader();
-    const {type, name, size} = image;
     reader.addEventListener('load', () => {
       res(reader.result.replace(/^data:.+;base64,/, ''))
     });

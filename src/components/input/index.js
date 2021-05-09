@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import s from './input.module.scss';
 
-const Input = ({label, className, error, onChange, ...props}) => {
+const Input = ({label, className, error, onChange, value, ...props}) => {
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -16,6 +16,7 @@ const Input = ({label, className, error, onChange, ...props}) => {
           onBlur={() => setIsFocused(false)} 
           className={s.input}
           onChange={(e) => onChange(e.target.value)} 
+          value={value}
           {...props} 
         />
         {error && <span className={s.error}>{error}</span>}

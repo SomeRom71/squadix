@@ -1,13 +1,29 @@
-import { SET_ME } from '../constants/actions.constants';
+import { SET_ME, SET_USER, SET_AVATAR } from '../constants/actions.constants';
 
-const initialState = {};
+const initialState = {
+  me: {},
+  profile: {}
+};
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case SET_ME:
       return {
         ...state,
-        ...action.payload,
+        me: action.payload,
+      };
+    case SET_USER:
+      return {
+        ...state,
+        profile: action.payload,
+      };
+    case SET_AVATAR:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          profilePictureUrl: action.payload
+        },
       };
     default:
       return state;

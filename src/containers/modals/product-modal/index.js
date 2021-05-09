@@ -67,8 +67,7 @@ const ProductModal = ({ closeModal, addProduct, categories }) => {
           error={errors?.region?.message}
         />
         <select size="1" {...register('category')}>
-          <option disabled>Выберите героя</option>
-          {categories?.map(({name}) => <option value={name}>{name}</option>)}
+          {categories?.map(({name}) => <option key={name} value={name}>{name}</option>)}
         </select>
         <textarea
           className={s.textarea}

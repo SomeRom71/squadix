@@ -31,3 +31,13 @@ export const productSchema = yup.object().shape({
   price: yup.string().required('Введите цену'),
   postalDeliveryAvailable: yup.bool().required('Обязательное поле')
 });
+
+export const userSchema = yup.object().shape({
+  displayName: yup.string().required('Введите отображаемое имя'),
+  description: yup.string(),
+  birthday: yup.string(),
+  country: yup.string(),
+  city: yup.string(),
+  phone: yup.string(),
+  team: yup.string(),
+});

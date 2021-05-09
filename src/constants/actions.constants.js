@@ -37,3 +37,5 @@ export const ADD_NEW_PRODUCT = 'addNewProduct';
 // USER ACTIONS
 
 export const SET_ME = 'setMe';
+export const SET_USER = 'setUser';
+export const SET_AVATAR = 'setAvatar';
