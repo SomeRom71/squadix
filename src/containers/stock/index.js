@@ -16,9 +16,7 @@ import s from './stock.module.scss';
 const StockContainer = () => {
 
   const dispatch = useDispatch();
-  const { filters, categories } = useSelector(state => state.stock);
-  console.log(categories)
-  const { content, totalPages } = useSelector(state => state.stock);
+  const { filters, categories, content, totalPages } = useSelector(state => state.stock);
   const [isLoading, setIsLoading] = useState(false);
 
 

@@ -4,6 +4,7 @@ const initialState = {
   commentModal: {},
   postModal: {},
   productModal: {},
+  changePassModal: {},
 }
 
 export default function modalsReducer(state = initialState, action) {

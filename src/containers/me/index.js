@@ -2,19 +2,25 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../layout';
 import { useForm, Controller  } from 'react-hook-form';
-import Datepicker, { setDefaultLocale, registerLocale } from 'react-datepicker';
+import Datepicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import { updateAvatar, updateMe } from '../../actions/user-actions';
+import { openModal } from '../../actions/modals-actions';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
+import { CHANGE_PASS_MODAL } from '../../constants/modal.constants';
+import { LOGIN_PATH } from '../../constants/routes.constants';
+import { changePass } from '../../services/auth';
+import { useHistory } from 'react-router';
 
 import s from './me.module.scss';
-
 registerLocale('ru', ru);
 
 const MeContainer = () => {
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const { 
@@ -28,7 +34,7 @@ const MeContainer = () => {
     description
   } = useSelector(state => state.user.me);
 
-  const { handleSubmit, setValue, getValues, reset, control } = useForm({
+  const { handleSubmit, setValue, reset, control } = useForm({
     defaultValues: {
       birthday,
       city,
@@ -39,8 +45,6 @@ const MeContainer = () => {
       description
     }
   });
-
-  const values = getValues();
 
   const avatarChange = async (val) => {
     const formData = new FormData();
@@ -53,6 +57,11 @@ const MeContainer = () => {
     }
   }
 
+  const onLogout = () => {
+    localStorage.removeItem('accessToken');
+    history.push(LOGIN_PATH);
+  }
+
   const onSubmit = async (data) => {
     try {
       await dispatch(updateMe({
@@ -63,6 +72,12 @@ const MeContainer = () => {
     } catch (e) {
       toast.error(ERRORS[e?.response?.data?.message] || 'Ошибка');
     }
+  }
+
+  const openChangeModal = () => {
+    dispatch(openModal(CHANGE_PASS_MODAL, {
+      changePass: (data) => changePass(data)
+    }))
   }
 
   useEffect(() => {
@@ -83,7 +98,7 @@ const MeContainer = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={s.avatar}>
             {profilePictureUrl ? 
-              <img className={s.img} src={profilePictureUrl} /> :
+              <img className={s.img} src={profilePictureUrl} alt="avatar" /> :
               <div className={s.preview}>
                 {displayName?.[0]}
               </div>
@@ -206,6 +221,18 @@ const MeContainer = () => {
           <Button
             type="submit" 
             text="Сохранить" 
+          />
+          <Button 
+            styleType="red"
+            text="Изменить пароль"
+            className={s.change}
+            onClick={openChangeModal}
+          />
+          <Button 
+            styleType="red"
+            text="Выйти"
+            className={s.change}
+            onClick={onLogout}
           />
         </form>
       </div>

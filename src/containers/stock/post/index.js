@@ -10,7 +10,7 @@ import Layout from '../../layout';
 
 import s from './post.module.scss';
 
-const PostContainer = ({}) => {
+const PostContainer = () => {
 
   const dispatch = useDispatch();
   const post = useSelector(state => state.stock.post);

@@ -38,7 +38,7 @@ const FeedItem = ({
   const [isSliderShow, setIsSliderShow] = useState(false);
 
   const copyLink = () => {
-    const linkToCopy = promoUrl ? promoUrl : isPost ? pathname : `${pathname}/${id}`;
+    const linkToCopy = isPost ? pathname : `${pathname}/${id}`;
     navigator.clipboard.writeText(linkToCopy);
     toast.success('Ссылка скопирована.');
   }
@@ -53,26 +53,29 @@ const FeedItem = ({
           <UserPreview 
             name={authorName}
             avatar={authorAvatarUrl}
-            date={createdAt}
+            date={promoUrl ? null : createdAt}
             localClassName="post"
           />
         </Link>
-        {isPhoneShow ?
-          <a className={s.phone} href={`tel:${authorPhone}`}>{authorPhone}</a> : 
+        {!promoUrl && <>
+          {isPhoneShow ?
+            <a className={s.phone} href={`tel:${authorPhone}`}>{authorPhone}</a> : 
+            <button
+              className={s.showPhone}
+              onClick={() => setIsPhoneShow(true)}
+            >
+              Показать телефон
+            </button>  
+          }
           <button
-            className={s.showPhone}
-            onClick={() => setIsPhoneShow(true)}
+            className={s.headerBtn}
+            title="Скопировать URL"
+            onClick={() => copyLink()}
           >
-            Показать телефон
-          </button>  
+            <FaRegCopy />
+          </button>
+          </>
         }
-        <button
-          className={s.headerBtn}
-          title="Скопировать URL"
-          onClick={() => copyLink()}
-        >
-          <FaRegCopy />
-        </button>
         {promoUrl ? 
           <a
             target="blank" 
@@ -98,6 +101,7 @@ const FeedItem = ({
                 className={s.img} 
                 src={imageUrls[0]}
                 onClick={() => setIsSliderShow(!isSliderShow)}
+                alt="slider"
               />     
               
             </>

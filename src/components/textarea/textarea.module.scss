@@ -1,0 +1,40 @@
+@import "../../assets/styles/variables";
+
+.wrap {
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  box-sizing: border-box;
+  border: 2px solid gray;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color 0.3s ease;
+  outline: none;
+  &:hover,
+  &.active {
+    border-color: $primary-color;
+  }
+}
+
+.input {
+  height: 100%;
+  width: 100%;
+  min-height: 150px;
+  background-color: transparent;
+  padding: 2px 8px;
+  outline: none;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+}
+
+.error {
+  position: absolute;
+  top: 100%;
+  margin-top: 5px;
+  left: 0;
+  color: red;
+  font-size: 10px;
+}

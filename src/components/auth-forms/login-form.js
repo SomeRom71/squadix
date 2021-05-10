@@ -18,10 +18,12 @@ const LoginForm = () => {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
 
-  const { handleSubmit, formState: { errors }, setValue } = useForm({
+  const { handleSubmit, formState: { errors }, setValue, getValues } = useForm({
     reValidateMode: 'onSubmit',
     resolver: yupResolver(loginSchema),
   });
+
+  const values = getValues();
 
   const onSubmit = async (data) => {
     try {
@@ -44,8 +46,10 @@ const LoginForm = () => {
           placeholder="Email"
           onChange={(value) => setValue('email', value)}
           error={errors?.email?.message}
+          value={values.email}
         />
         <Input 
+          value={values.password}
           className={s.input}
           placeholder="Пароль"
           type='password'

@@ -18,4 +18,8 @@
   &:disabled {
     filter: brightness(40%);
   }
+  
+  &.red {
+    background-color: rgb(238, 134, 134);
+  }
 }

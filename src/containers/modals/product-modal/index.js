@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import Button from '../../../components/button';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import Modal from '../../../components/modal';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { productSchema } from '../../../helpers/validation-schemas';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../../constants/error.constants';
 import { fileToDataUri } from '../../../helpers/form-helpers';
-
-import s from './product-modal.module.scss';
 import Input from '../../../components/input';
 import Checkbox from '../../../components/checkbox';
+import Textarea from '../../../components/textarea';
+
+import s from './product-modal.module.scss';
+
 
 const ProductModal = ({ closeModal, addProduct, categories }) => {
 
   const [images, setImages] = useState([]);
 
-  const { handleSubmit, formState: { errors }, register, setValue, getValues } = useForm({
+  const { handleSubmit, formState: { errors }, register, setValue, getValues, control } = useForm({
     reValidateMode: 'onChange',
     resolver: yupResolver(productSchema),
     defaultValues: {
@@ -60,41 +62,60 @@ const ProductModal = ({ closeModal, addProduct, categories }) => {
           placeholder="Наименование товара*"
           onChange={(val) => setValue('name', val)}
           error={errors?.name?.message}
+          className={s.input}
         />
         <Input 
           placeholder="Местонахождение"
           onChange={(val) => setValue('region', val)}
           error={errors?.region?.message}
+          className={s.input}
         />
-        <select size="1" {...register('category')}>
+        <select size="1" {...register('category')} className={s.select}>
           {categories?.map(({name}) => <option key={name} value={name}>{name}</option>)}
         </select>
-        <textarea
-          className={s.textarea}
-          placeholder="Описание" 
-          {...register('description')}
+        <Controller 
+          control={control}
+          name="description"
+          render={({field: {value}}) => (
+            <Textarea 
+              className={s.text}
+              value={value}
+              onChange={(val) => setValue('description', val)}
+              error={errors?.description?.message}
+              placeholder="Введите описание"
+            />
+          )}
         />
-        <Checkbox 
-          label="Доставка почтой"
-          onChange={(val) => setValue('postalDeliveryAvailable', val)}
-          checked={values.postalDeliveryAvailable}
+        <Controller 
+          control={control}
+          name="description"
+          render={({field: {value}}) => (
+          <Checkbox 
+            label="Доставка почтой"
+            onChange={(val) => setValue('postalDeliveryAvailable', val)}
+            checked={value}
+            className={s.check}
+          />
+          )}
         />
-        <span className={s.error}>{errors?.description?.message}</span>
         <input 
           type="file"
           multiple 
           onChange={uploadImage}
           accept="image/jpeg, image/png"
+          className={s.file}
         />
         <Input 
           type="number"
           placeholder="Цена, BYN*"
           onChange={(val) => setValue('price', val)}
           error={errors?.price?.message}
+          className={s.input}
         />
         <Button 
           text="Отправить"
           type="submit"
+          className={s.btn}
         />
       </form>
     </Modal>

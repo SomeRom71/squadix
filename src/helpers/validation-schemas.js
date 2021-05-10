@@ -7,6 +7,14 @@ export const loginSchema = yup.object().shape({
     .min(8, 'Password is too short - should be 8 chars minimum')
     .max(25, 'Password is too long - should be 25 chars maximum')
 });
+
+export const changeSchema = yup.object().shape({
+  oldPassword: yup.string().required('Введите старый пароль'),
+  newPassword: yup.string()
+    .required('Введите новый пароль') 
+    .min(8, 'Password is too short - should be 8 chars minimum')
+    .max(25, 'Password is too long - should be 25 chars maximum')
+});
   
 export const registerSchema = yup.object().shape({
   displayName: yup.string().required('Name is required'), 

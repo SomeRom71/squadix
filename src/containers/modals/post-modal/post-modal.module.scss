@@ -8,3 +8,30 @@
   display: block;
   font-size: 12px;
 }
+
+.btn {
+  margin-top: 14px;
+}
+
+.file {
+  margin-top: 14px;
+}
+
+.text {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.date {
+  margin-top: 8px;
+  border: 2px solid #000;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.dateInput {
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}

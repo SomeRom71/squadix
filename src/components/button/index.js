@@ -1,11 +1,20 @@
 import React from 'react';
 import Loader from '../loader';
-
+import cn from 'classnames';
 import s from './button.module.scss';
 
-const Button = ({text, icon, isLoading, type = 'button', disabled, onClick = () => {}}) => (
+const Button = ({
+  text, 
+  icon, 
+  isLoading, 
+  type = 'button', 
+  disabled,
+  className,
+  styleType, 
+  onClick = () => {}
+}) => (
   <button 
-    className={s.button}
+    className={cn(s.button, className, s[styleType])}
     type={type}
     disabled={disabled}
     onClick={() => onClick()}

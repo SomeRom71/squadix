@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../../../components/button';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import Modal from '../../../components/modal';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { postSchema } from '../../../helpers/validation-schemas';
@@ -10,21 +10,28 @@ import { fileToDataUri, filterPassedTime } from '../../../helpers/form-helpers';
 import DatePicker from 'react-datepicker';
 
 import s from './post-modal.module.scss';
+import Textarea from '../../../components/textarea';
 
 const PostModal = ({ closeModal, addPost, isEvent }) => {
 
   const [images, setImages] = useState([]);
   const [eventDate, setEventDate] = useState(new Date());
 
-  const { handleSubmit, formState: { errors }, register } = useForm({
+  const { handleSubmit, formState: { errors }, setValue, control } = useForm({
     resolver: yupResolver(postSchema),
   });
-
   const onPost = async (data) => {
+
+    if (isEvent && !images.length) {
+      toast.error('Добавьте хотя бы одну картинку');
+      return;
+    }
+
     try {
       await addPost({
         ...data, 
         images,
+        contentType: 'POST',
         ...(isEvent && { 
           eventDate,
           startTime: eventDate 
@@ -63,23 +70,32 @@ const PostModal = ({ closeModal, addPost, isEvent }) => {
             filterTime={filterPassedTime}
             timeIntervals={5}
             dateFormat="dd/MM/yyyy HH:mm"
+            className={s.dateInput}
+            wrapperClassName={s.date}
           />
         }
-        <textarea
-          className={s.textarea}
-          placeholder="Описание" 
-          {...register('description', {
-            required: 'Введите описание',
-          })}
+        <Controller 
+          control={control}
+          name="description"
+          render={({field: {value}}) => (
+            <Textarea 
+              className={s.text}
+              value={value}
+              onChange={(val) => setValue('description', val)}
+              error={errors?.description?.message}
+              placeholder="Введите описание"
+            />
+          )}
         />
-        <span className={s.error}>{errors?.description?.message}</span>
         <input 
           type="file"
           multiple 
           onChange={uploadImage}
           accept="image/jpeg, image/png"
+          className={s.file}
         />
         <Button 
+          className={s.btn}
           text="Отправить"
           type="submit"
           disabled={errors?.description?.message}

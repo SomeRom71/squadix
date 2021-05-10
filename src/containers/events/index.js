@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
 import { POST_MODAL } from '../../constants/modal.constants';
+import { ROLES } from '../../constants/user.constants';
 import { openModal } from '../../actions/modals-actions';
 import AddButton from '../../components/add-btn';
 
@@ -13,13 +14,10 @@ const EventsContainer = () => {
 
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const { roles } = useSelector(state => state.user.me);
   const {content, totalPages, currentPage} = useSelector(state => state.events);
-
-  useEffect(() => {
-    dispatch(setEvents(0));
-    return () => dispatch(clearEvents());
-  }, []);
-  
+  const addPermission = roles?.includes(ROLES.admin) || roles?.includes(ROLES.organizer);
+ 
   const onChangePage = async (page) => {
     try {
       setIsLoading(true);
@@ -46,9 +44,14 @@ const EventsContainer = () => {
     }))
   }
 
+  useEffect(() => {
+    dispatch(setEvents(0));
+    return () => dispatch(clearEvents());
+  }, []);
+
   return (
     <Layout>
-      <AddButton onClick={openPostModal} />
+      {addPermission && <AddButton onClick={openPostModal} />}
       <Feed
         onLike={eventLikeHandler}
         isLoading={isLoading}

@@ -76,6 +76,7 @@ const FeedItem = ({
                 className={s.img} 
                 src={imageUrls[0]}
                 onClick={() => setIsSliderShow(!isSliderShow)}
+                alt="preview"
               /> 
               <FSLightbox
                 toggler={isSliderShow}
