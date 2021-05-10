@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { productSchema } from '../../../helpers/validation-schemas';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../../constants/error.constants';
-import { fileToDataUri } from '../../../helpers/form-helpers';
+import { uploadImage } from '../../../helpers/form-helpers';
 import Input from '../../../components/input';
 import Checkbox from '../../../components/checkbox';
 import Textarea from '../../../components/textarea';
@@ -41,17 +41,6 @@ const ProductModal = ({ closeModal, addProduct, categories }) => {
     }
   }
 
-  const uploadImage = async (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const newImagesPromises = [];
-      for (let i = 0; i < e.target.files.length; i++) {
-        newImagesPromises.push(fileToDataUri(e.target.files[i]));
-      }
-      const newImages = await Promise.all(newImagesPromises);
-      setImages(newImages);
-    }
-  }
-
   return (
     <Modal 
       onClose={closeModal}
@@ -63,12 +52,14 @@ const ProductModal = ({ closeModal, addProduct, categories }) => {
           onChange={(val) => setValue('name', val)}
           error={errors?.name?.message}
           className={s.input}
+          value={values.name}
         />
         <Input 
           placeholder="Местонахождение"
           onChange={(val) => setValue('region', val)}
           error={errors?.region?.message}
           className={s.input}
+          value={values.region}
         />
         <select size="1" {...register('category')} className={s.select}>
           {categories?.map(({name}) => <option key={name} value={name}>{name}</option>)}
@@ -88,7 +79,7 @@ const ProductModal = ({ closeModal, addProduct, categories }) => {
         />
         <Controller 
           control={control}
-          name="description"
+          name="postalDeliveryAvailable"
           render={({field: {value}}) => (
           <Checkbox 
             label="Доставка почтой"
@@ -101,7 +92,7 @@ const ProductModal = ({ closeModal, addProduct, categories }) => {
         <input 
           type="file"
           multiple 
-          onChange={uploadImage}
+          onChange={(e) => uploadImage(e, setImages)}
           accept="image/jpeg, image/png"
           className={s.file}
         />
@@ -111,6 +102,7 @@ const ProductModal = ({ closeModal, addProduct, categories }) => {
           onChange={(val) => setValue('price', val)}
           error={errors?.price?.message}
           className={s.input}
+          value={values.price}
         />
         <Button 
           text="Отправить"

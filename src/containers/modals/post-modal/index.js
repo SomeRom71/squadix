@@ -6,11 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { postSchema } from '../../../helpers/validation-schemas';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../../constants/error.constants';
-import { fileToDataUri, filterPassedTime } from '../../../helpers/form-helpers';
+import { uploadImage, filterPassedTime } from '../../../helpers/form-helpers';
 import DatePicker from 'react-datepicker';
+import Textarea from '../../../components/textarea';
 
 import s from './post-modal.module.scss';
-import Textarea from '../../../components/textarea';
+
 
 const PostModal = ({ closeModal, addPost, isEvent }) => {
 
@@ -44,16 +45,7 @@ const PostModal = ({ closeModal, addPost, isEvent }) => {
     }
   }
 
-  const uploadImage = async (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const newImagesPromises = [];
-      for (let i = 0; i < e.target.files.length; i++) {
-        newImagesPromises.push(fileToDataUri(e.target.files[i]));
-      }
-      const newImages = await Promise.all(newImagesPromises);
-      setImages(newImages);
-    }
-  }
+  
 
   return (
     <Modal 
@@ -90,7 +82,7 @@ const PostModal = ({ closeModal, addPost, isEvent }) => {
         <input 
           type="file"
           multiple 
-          onChange={uploadImage}
+          onChange={(e) => uploadImage(e, setImages)}
           accept="image/jpeg, image/png"
           className={s.file}
         />
