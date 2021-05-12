@@ -17,9 +17,16 @@ button {
   border: none;
   cursor: pointer;
   background: none;
+  font: inherit;
+  padding: 0;
 }
 
 a {
   color: initial;
   text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }

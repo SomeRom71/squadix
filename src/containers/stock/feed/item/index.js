@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import UserPreview from '../../../../components/user-preview';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FaRegCopy, FaExternalLinkAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import Tag from '../../../../components/tag';
@@ -34,7 +34,7 @@ const FeedItem = ({
   const [isPhoneShow, setIsPhoneShow] = useState(false);
   const { pathname } = useLocation(); 
   const backURL = pathname.split('/');
-
+  const history = useHistory();
   const [isSliderShow, setIsSliderShow] = useState(false);
 
   const copyLink = () => {
@@ -46,17 +46,14 @@ const FeedItem = ({
   return (
     <div className={cn(s.item, {[s.promo]: promoUrl}, className)}>
       <div className={s.header}>
-        <Link 
+        <UserPreview 
+          name={authorName}
+          avatar={authorAvatarUrl}
+          date={promoUrl ? null : createdAt}
+          localClassName="post"
+          onClick={() => history.push(`/profile/${authorId}`)}
           className={s.link}
-          to={`/profile/${authorId}`}
-        >
-          <UserPreview 
-            name={authorName}
-            avatar={authorAvatarUrl}
-            date={promoUrl ? null : createdAt}
-            localClassName="post"
-          />
-        </Link>
+        />
         {!promoUrl && <>
           {isPhoneShow ?
             <a className={s.phone} href={`tel:${authorPhone}`}>{authorPhone}</a> : 

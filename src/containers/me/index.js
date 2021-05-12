@@ -11,7 +11,6 @@ import { openModal } from '../../actions/modals-actions';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
 import { CHANGE_PASS_MODAL } from '../../constants/modal.constants';
-import { LOGIN_PATH } from '../../constants/routes.constants';
 import { changePass } from '../../services/auth';
 import { useHistory } from 'react-router';
 
@@ -55,11 +54,6 @@ const MeContainer = () => {
     } catch (e) {
       toast.error(ERRORS[e?.response?.data?.message]);
     }
-  }
-
-  const onLogout = () => {
-    localStorage.removeItem('accessToken');
-    history.push(LOGIN_PATH);
   }
 
   const onSubmit = async (data) => {
@@ -228,12 +222,6 @@ const MeContainer = () => {
             text="Изменить пароль"
             className={s.change}
             onClick={openChangeModal}
-          />
-          <Button 
-            styleType="red"
-            text="Выйти"
-            className={s.change}
-            onClick={onLogout}
           />
         </form>
       </div>

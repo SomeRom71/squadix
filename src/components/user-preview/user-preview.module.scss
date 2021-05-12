@@ -3,6 +3,7 @@
   align-items: center;
   margin-left: auto;
   cursor: pointer;
+  text-align: left;
 }
 
 .noAvatar {
@@ -33,6 +34,9 @@
 }
 
 .post {
+  margin-right: auto;
+  margin-left: 0;
+
   .name {
     color: #000;
     font-weight: normal;

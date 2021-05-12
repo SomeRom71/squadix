@@ -4,10 +4,13 @@ import moment from 'moment';
 
 import s from './user-preview.module.scss';
 
-const UserPreview = ({ name, avatar, date, localClassName }) => {
+const UserPreview = ({ name, avatar, date, localClassName, onClick = () => {} }) => {
 
   return (
-    <div className={cn(s.container, {[s[localClassName]]: localClassName })}>
+    <button
+      onClick={onClick} 
+      className={cn(s.container, {[s[localClassName]]: localClassName })}
+    >
       {avatar ? 
         <img src={avatar} className={s.img} alt="avatar" /> : 
         <div className={s.noAvatar}>
@@ -18,7 +21,7 @@ const UserPreview = ({ name, avatar, date, localClassName }) => {
         <span className={s.name}>{name}</span>
         {date && <span className={s.date}>{moment(date).format('DD MMMM YYYY, HH:mm')}</span>}
       </div>
-    </div>
+    </button>
   )
 }
 

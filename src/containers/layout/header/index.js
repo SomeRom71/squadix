@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../../components/logo';
-import UserPreview from '../../../components/user-preview';
 import { useSelector } from 'react-redux';
-import { NEWS_PATH, EVENTS_PATH, STOCK_PATH, HOME_PATH, ME_PATH } from '../../../constants/routes.constants';
+import { NEWS_PATH, EVENTS_PATH, STOCK_PATH, HOME_PATH } from '../../../constants/routes.constants';
 
 import s from './header.module.scss';
+import HeaderMenu from '../../../components/header-menu';
 
 const Header = () => {
 
@@ -25,15 +25,11 @@ const Header = () => {
       <NavLink to={STOCK_PATH} className={s.link} activeClassName="active-nav">
         Барахолка
       </NavLink>
-      <Link 
-        to={ME_PATH}
+      <HeaderMenu 
         className={s.me}
-      >
-        <UserPreview 
-          name={displayName}
-          avatar={profilePictureUrl}
-        />
-      </Link>
+        displayName={displayName}
+        profilePictureUrl={profilePictureUrl}        
+      />
     </header>
   )
 }

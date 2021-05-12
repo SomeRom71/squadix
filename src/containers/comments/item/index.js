@@ -2,7 +2,7 @@ import React from 'react';
 import UserPreview from '../../../components/user-preview';
 import { FaHeart } from 'react-icons/fa';
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import s from './item.module.scss';
 
@@ -21,19 +21,18 @@ const CommentsItem = ({
   onLike
 }) => {
 
+  const history = useHistory();
+
   return (
     <div className={cn(s.container, className)}>
       <div className={s.header}>
-        <Link 
-          to={`/profile/${userId}`}
-        >
-          <UserPreview 
-            name={userName}
-            avatar={userAvatarUrl}
-            date={createdAt}
-            localClassName="post"
-          />
-        </Link>
+        <UserPreview 
+          name={userName}
+          avatar={userAvatarUrl}
+          date={createdAt}
+          localClassName="post"
+          onClick={() => history.push(`/profile/${userId}`)}
+        />
         <div className={s.likes}>
           <button
             onClick={() => onLike(id)}

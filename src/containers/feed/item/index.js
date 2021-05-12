@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import UserPreview from '../../../components/user-preview';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FaComment, FaHeart } from "react-icons/fa";
 import Youtube from 'react-youtube';
 import { FaRegCopy, FaExternalLinkAlt } from 'react-icons/fa';
@@ -33,6 +33,7 @@ const FeedItem = ({
   const { pathname } = useLocation(); 
   const backURL = pathname.split('/');
   const [isSliderShow, setIsSliderShow] = useState(false);
+  const history = useHistory();
 
   const copyLink = () => {
     const linkToCopy = isPost ? pathname : `${pathname}/${id}`;
@@ -43,17 +44,13 @@ const FeedItem = ({
   return (
     <div className={cn(s.item, className)}>
       <div className={s.header}>
-        <Link 
-          className={s.link}
-          to={`/profile/${authorId}`}
-        >
-          <UserPreview 
-            name={authorName}
-            avatar={authorAvatarUrl}
-            date={createdAt}
-            localClassName="post"
-          />
-        </Link>
+        <UserPreview 
+          name={authorName}
+          avatar={authorAvatarUrl}
+          date={createdAt}
+          localClassName="post"
+          onClick={() => history.push(`/profile/${authorId}`)}
+        />
         <button
           className={s.headerBtn}
           title="Скопировать URL"
