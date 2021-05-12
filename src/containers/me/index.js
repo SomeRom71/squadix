@@ -154,9 +154,10 @@ const MeContainer = () => {
               field: { value },
             }) => (
               <Input
+                disabled
                 label="Страна"
                 className={s.input}
-                value={value}
+                value={'Беларусь'}
                 onChange={(val) => setValue('country', val)}
               />
             )}
