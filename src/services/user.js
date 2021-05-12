@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { API_URL } from '../constants/api.constants';
 
 export const me = (token) => {
-  return axios.get('https://api.squadix.co/users/me', {
+  return axios.get(`${API_URL}users/me`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -9,13 +10,13 @@ export const me = (token) => {
 }
 
 export const getUser = (id) => {
-  return axios.get(`https://api.squadix.co/users/${id}`)
+  return axios.get(`${API_URL}users/${id}`)
 }
 
 export const sendAvatar = (file) => {
-  return axios.post(`https://api.squadix.co/users/me/avatar`, file)
+  return axios.post(`${API_URL}users/me/avatar`, file)
 }
 
 export const sendUserData = (data) => {
-  return axios.put(`https://api.squadix.co/users/me`, data)
+  return axios.put(`${API_URL}users/me`, data)
 }
