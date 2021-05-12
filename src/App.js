@@ -16,7 +16,10 @@ const App = () => {
   useEffect(() => {
 
       const isMobile = detectMob();
-      if (isMobile) history.push(APPS_PATH);
+      if (isMobile) {
+        history.push(APPS_PATH);
+        return;
+      };
 
       const token = localStorage.getItem('accessToken');
       if (!token) {
