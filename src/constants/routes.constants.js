@@ -13,3 +13,5 @@ export const ME_PATH = '/me';
 export const POLICY_PATH = '/policy';
 export const TERMS_PATH = '/terms';
 export const RULES_PATH = '/rules';
+
+export const APPS_PATH = '/apps';

@@ -13,6 +13,7 @@ import Me from './pages/me';
 import Policy from './pages/static/policy';
 import Rules from './pages/static/rules';
 import Terms from './pages/static/terms';
+import Apps from './pages/static/apps';
 
 import {
   HOME_PATH,
@@ -28,7 +29,8 @@ import {
   ME_PATH,
   POLICY_PATH,
   RULES_PATH,
-  TERMS_PATH
+  TERMS_PATH,
+  APPS_PATH
 } from './constants/routes.constants';
 
 const Routes = () => (
@@ -46,6 +48,7 @@ const Routes = () => (
     <Route path={POLICY_PATH} component={Policy} />
     <Route path={RULES_PATH} component={Rules} />
     <Route path={TERMS_PATH} component={Terms} />
+    <Route path={APPS_PATH} component={Apps} />
     <Route path={HOME_PATH}>
       <Redirect to={NEWS_PATH} />
     </Route>
