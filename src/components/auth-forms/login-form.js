@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Button from '../button';
 import Input from '../input';
@@ -18,12 +18,10 @@ const LoginForm = () => {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
 
-  const { handleSubmit, formState: { errors }, setValue, getValues } = useForm({
+  const { handleSubmit, formState: { errors }, setValue, control } = useForm({
     reValidateMode: 'onSubmit',
     resolver: yupResolver(loginSchema),
   });
-
-  const values = getValues();
 
   const onSubmit = async (data) => {
     try {
@@ -41,20 +39,31 @@ const LoginForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input 
-          className={s.input}
-          placeholder="Email"
-          onChange={(value) => setValue('email', value)}
-          error={errors?.email?.message}
-          value={values.email}
+        <Controller 
+          control={control}
+          name="email"
+          render={({field: { value }}) => (
+            <Input 
+              className={s.input}
+              placeholder="Email"
+              onChange={(value) => setValue('email', value)}
+              error={errors?.email?.message}
+              value={value}
+            />
+          )}
         />
-        <Input 
-          value={values.password}
-          className={s.input}
-          placeholder="Пароль"
-          type='password'
-          onChange={(value) => setValue('password', value)}
-          error={errors?.password?.message}
+        <Controller 
+          control={control}
+          name="password"
+          render={({field: { value }}) => (
+            <Input 
+              value={value}
+              className={s.input}
+              placeholder="Пароль"
+              type='password'
+              onChange={(value) => setValue('password', value)}
+              error={errors?.password?.message}
+            />)} 
         />
         <Button
           type="submit"
