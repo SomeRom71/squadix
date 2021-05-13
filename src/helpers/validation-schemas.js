@@ -8,6 +8,17 @@ export const loginSchema = yup.object().shape({
     .max(25, 'Password is too long - should be 25 chars maximum')
 });
 
+export const resetTokenSchema = yup.object().shape({
+  newPassword: yup.string()
+    .required('No password provided') 
+    .min(8, 'Password is too short - should be 8 chars minimum')
+    .max(25, 'Password is too long - should be 25 chars maximum')
+});
+
+export const resetSchema = yup.object().shape({
+  email: yup.string().email('Invalid email').required('E-mail is required'),
+});
+
 export const changeSchema = yup.object().shape({
   oldPassword: yup.string().required('Введите старый пароль'),
   newPassword: yup.string()

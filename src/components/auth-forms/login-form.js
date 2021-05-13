@@ -3,13 +3,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Button from '../button';
 import Input from '../input';
+import cn from 'classnames';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../../helpers/validation-schemas';
 import { authUser } from '../../services/auth';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
 import { useHistory } from 'react-router-dom';
-import { REGISTER_PATH, HOME_PATH } from '../../constants/routes.constants';
+import { REGISTER_PATH, HOME_PATH, RESTORE_PATH } from '../../constants/routes.constants';
 
 import s from './auth-form.module.scss';
 
@@ -65,7 +66,14 @@ const LoginForm = () => {
               error={errors?.password?.message}
             />)} 
         />
+        <Link
+          className={cn(s.forget, s.link)} 
+          to={RESTORE_PATH}
+        >
+          Забыли пароль?
+        </Link>
         <Button
+          className={s.btn}
           type="submit"
           text="ВОЙТИ"
           disabled={isLoading}

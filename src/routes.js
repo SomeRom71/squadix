@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './pages/login';
 import Register from './pages/register';
+import Reset from './pages/reset';
 import Events from './pages/events';
 import Stock from './pages/stock';
 import News from './pages/news';
@@ -30,11 +31,15 @@ import {
   POLICY_PATH,
   RULES_PATH,
   TERMS_PATH,
-  APPS_PATH
+  APPS_PATH,
+  RESTORE_PATH,
+  RESTORE_TOKEN_PATH
 } from './constants/routes.constants';
 
 const Routes = () => (
   <Switch>
+    <Route path={RESTORE_PATH} exact component={Reset} />
+    <Route path={RESTORE_TOKEN_PATH} component={Reset} />
     <Route path={LOGIN_PATH} component={Login} />
     <Route path={REGISTER_PATH} component={Register} />
     <Route path={EVENTS_PATH} exact component={Events} />

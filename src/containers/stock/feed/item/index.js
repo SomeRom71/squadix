@@ -26,6 +26,7 @@ const FeedItem = ({
     authorName,
     authorAvatarUrl,
     createdAt,
+    views
   }, 
   isPost,
   className
@@ -109,9 +110,10 @@ const FeedItem = ({
             type="image"
           />
       </div>
-      <h4>
-        {name}
-      </h4>
+      <div className={s.row}>
+        <h4>{name}</h4>
+        <span className={s.views}>Просмотров: {views}</span>
+      </div>
       {isPost && <p>{description}</p>}
       <div className={s.footer}>
         {category && <Tag className={s.tag} text={category} />}

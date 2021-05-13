@@ -12,3 +12,11 @@ export const changePass = (data) => {
 export const createUser = (data) => {
   return axios.post(`${API_URL}users`, data)
 }
+
+export const askPasswordReset = (data) => {
+  return axios.post(`${API_URL}reset`, data)
+}
+
+export const resetPasswordConfirm = (data) => {
+  return axios.post(`${API_URL}reset-confirmation`, data)
+}

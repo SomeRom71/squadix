@@ -1,9 +1,7 @@
 .input {
   height: 34px;
   width: 100%;
-  &:first-child {
-    margin-bottom: 24px;
-  }
+  margin-top: 12px;
 
   input {
     font-size: 14px;
@@ -14,4 +12,15 @@
   display: inline-block;
   margin-top: 20px;
   color: gray;
+  font-size: 15px;
+}
+
+.forget {
+  margin: 8px 0;
+  display: block;
+  text-align: right;
+}
+
+.btn {
+  margin-top: 16px;
 }

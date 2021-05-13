@@ -1,13 +1,13 @@
 import React from 'react';
 import AuthContainer from '../containers/auth';
-import RegisterForm from '../components/auth-forms/regiter-form';
+import ResetForm from '../components/auth-forms/reset-form';
 
-const Login = () => {
+const Reset = () => {
   return (
     <AuthContainer>
-      <RegisterForm />
+      <ResetForm />
     </AuthContainer>
   )
 }
 
-export default Login;
+export default Reset;

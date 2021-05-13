@@ -7,6 +7,8 @@ import Youtube from 'react-youtube';
 import { FaRegCopy, FaExternalLinkAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import FSLightbox from 'fslightbox-react';
+import moment from 'moment';
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 import s from './item.module.scss';
 
@@ -14,6 +16,7 @@ import s from './item.module.scss';
 const FeedItem = ({
   info: {
     id,
+    shortDescription,
     description,
     imageUrls,
     authorId,
@@ -24,19 +27,24 @@ const FeedItem = ({
     commentsCount,
     videoUrl,
     liked,
+    eventDate,
+    eventLatitude,
+    eventLongitude,
+    startTime
   },
   onLike, 
   isPost,
   className
 }) => {
 
-  const { pathname } = useLocation(); 
+  const location = useLocation();
+  const pathname = location.pathname; 
   const backURL = pathname.split('/');
   const [isSliderShow, setIsSliderShow] = useState(false);
   const history = useHistory();
-
+  
   const copyLink = () => {
-    const linkToCopy = isPost ? pathname : `${pathname}/${id}`;
+    const linkToCopy = isPost ? window.location.origin + pathname : `${window.location.origin}${pathname}/${id}`;
     navigator.clipboard.writeText(linkToCopy);
     toast.success('Ссылка скопирована.');
   }
@@ -88,9 +96,29 @@ const FeedItem = ({
             />
         : null}
       </div>
+      {eventDate && <div>Дата: <b>{moment(eventDate).format('DD.MM.yyyy')}</b></div>}
+      {startTime && <div>Время: <b>{moment(startTime).format('HH:mm')}</b></div>}
+      {shortDescription && <h4>{shortDescription}</h4>}
       <p>
-        {description?.length > 255 ? description.slice(0, 255) + '...' : description}
+        {description?.length > 255 && !isPost ? description.slice(0, 255) + '...' : description}
       </p>
+      {eventLatitude && eventLongitude && isPost &&
+        <YMaps>
+          <b>Координаты:</b>
+          <Map
+            className={s.map}
+            width="100%"
+            height="350px" 
+            defaultState={{
+              center: [eventLatitude, eventLongitude], zoom: 12 
+            }}
+          >
+            <Placemark 
+              geometry={[eventLatitude, eventLongitude]} 
+            />
+          </Map>
+        </YMaps>
+      }
       <div className={s.footer}>
         {!isPost && 
           <Link

@@ -72,6 +72,7 @@ const RegisterForm = () => {
           error={errors?.phone?.message}
         />
         <Button
+          className={s.btn}
           type='submit'
           text='Зарегистрироваться'
           disabled={isLoading}
@@ -82,7 +83,7 @@ const RegisterForm = () => {
         className={s.link} 
         to={LOGIN_PATH}
       >
-        Есть аккаунт? Войдите.
+        Есть аккаунт? Войти
       </Link>
     </>
   )

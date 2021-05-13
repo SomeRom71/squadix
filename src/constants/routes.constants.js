@@ -1,6 +1,8 @@
 export const HOME_PATH = '/';
 export const LOGIN_PATH = '/login';
 export const REGISTER_PATH = '/register';
+export const RESTORE_PATH = '/reset';
+export const RESTORE_TOKEN_PATH = '/reset/:token';
 export const EVENTS_PATH = '/events';
 export const STOCK_PATH = '/stock';
 export const NEWS_PATH = '/news';
@@ -15,3 +17,11 @@ export const TERMS_PATH = '/terms';
 export const RULES_PATH = '/rules';
 
 export const APPS_PATH = '/apps';
+
+
+export const UNAUTHORIZED_PAGES_PATH = [
+    LOGIN_PATH,
+    REGISTER_PATH,
+    RESTORE_PATH,
+    RESTORE_TOKEN_PATH
+]; 
