@@ -39,7 +39,7 @@ const FeedItem = ({
   const [isSliderShow, setIsSliderShow] = useState(false);
 
   const copyLink = () => {
-    const linkToCopy = isPost ? pathname : `${pathname}/${id}`;
+    const linkToCopy = isPost ? window.location.origin + pathname : `${window.location.origin}${pathname}/${id}`;
     navigator.clipboard.writeText(linkToCopy);
     toast.success('Ссылка скопирована.');
   }
