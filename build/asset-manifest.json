@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c9f09fce.chunk.css",
+    "main.js": "/static/js/main.79c1ae8e.chunk.js",
+    "main.js.map": "/static/js/main.79c1ae8e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9b647a07.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9b647a07.js.map",
+    "static/css/2.60f91591.chunk.css": "/static/css/2.60f91591.chunk.css",
+    "static/js/2.dd4be909.chunk.js": "/static/js/2.dd4be909.chunk.js",
+    "static/js/2.dd4be909.chunk.js.map": "/static/js/2.dd4be909.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.60f91591.chunk.css.map": "/static/css/2.60f91591.chunk.css.map",
+    "static/css/main.c9f09fce.chunk.css.map": "/static/css/main.c9f09fce.chunk.css.map",
+    "static/js/2.dd4be909.chunk.js.LICENSE.txt": "/static/js/2.dd4be909.chunk.js.LICENSE.txt",
+    "static/media/app.scss": "/static/media/Roboto-Regular.a8d6ac03.ttf",
+    "static/media/android.d8dbe037.svg": "/static/media/android.d8dbe037.svg",
+    "static/media/ios.d4ed0ea7.svg": "/static/media/ios.d4ed0ea7.svg",
+    "static/media/auth.module.scss": "/static/media/login-bg.7f65128e.png",
+    "static/media/logo.35f541fb.png": "/static/media/logo.35f541fb.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9b647a07.js",
+    "static/css/2.60f91591.chunk.css",
+    "static/js/2.dd4be909.chunk.js",
+    "static/css/main.c9f09fce.chunk.css",
+    "static/js/main.79c1ae8e.chunk.js"
+  ]
+}
