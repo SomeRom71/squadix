@@ -1,4 +1,4 @@
-import { SET_ME, SET_USER, SET_AVATAR } from '../constants/actions.constants';
+import { SET_ME, SET_USER, SET_AVATAR, REMOVE_AVATAR } from '../constants/actions.constants';
 
 const initialState = {
   me: {},
@@ -23,6 +23,14 @@ export default function userReducer(state = initialState, action) {
         me: {
           ...state.me,
           profilePictureUrl: action.payload
+        },
+      };
+    case REMOVE_AVATAR:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          profilePictureUrl: null,
         },
       };
     default:

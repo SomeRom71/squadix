@@ -39,3 +39,4 @@ export const ADD_NEW_PRODUCT = 'addNewProduct';
 export const SET_ME = 'setMe';
 export const SET_USER = 'setUser';
 export const SET_AVATAR = 'setAvatar';
+export const REMOVE_AVATAR = 'removeAvatar';

@@ -6,7 +6,7 @@ import Datepicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import Input from '../../components/input';
 import Button from '../../components/button';
-import { updateAvatar, updateMe } from '../../actions/user-actions';
+import { updateAvatar, updateMe, removeAvatar } from '../../actions/user-actions';
 import { openModal } from '../../actions/modals-actions';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
@@ -74,6 +74,15 @@ const MeContainer = () => {
     }))
   }
 
+  const rmAvatar = async () => {
+    try {
+      await dispatch(removeAvatar());
+      toast.success('Аватар успешно удален');
+    } catch (e) {
+      toast.error(ERRORS[e?.response?.data?.message] || 'Ошибка');
+    }
+  }
+
   useEffect(() => {
     reset({
       birthday, 
@@ -92,7 +101,15 @@ const MeContainer = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={s.avatar}>
             {profilePictureUrl ? 
-              <img className={s.img} src={profilePictureUrl} alt="avatar" /> :
+              <>
+                <img className={s.img} src={profilePictureUrl} alt="avatar" />
+                <button
+                  type="button" 
+                  onClick={() => rmAvatar()}
+                  className={s.remove}>
+                  x
+                </button>
+              </> :
               <div className={s.preview}>
                 {displayName?.[0]}
               </div>

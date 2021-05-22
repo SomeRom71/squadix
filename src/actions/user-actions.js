@@ -1,5 +1,5 @@
-import { me, getUser, sendAvatar, sendUserData } from '../services/user';
-import { SET_ME, SET_USER, SET_AVATAR } from '../constants/actions.constants';
+import { me, getUser, sendAvatar, sendUserData, deleteAvatar } from '../services/user';
+import { SET_ME, SET_USER, SET_AVATAR, REMOVE_AVATAR } from '../constants/actions.constants';
 
 export const setMe = (token) => {
   return async (dispatch) => {
@@ -21,12 +21,30 @@ export const updateMe = (data) => {
   }
 }
 
+export const removeAvatar = () => {
+  return async (dispatch) => {
+    await deleteAvatar();
+    dispatch({
+      type: REMOVE_AVATAR,
+    })
+  }
+}
+
 export const setUser = (id) => {
   return async (dispatch) => {
     const userData = await getUser(id);
     dispatch({
       type: SET_USER,
       payload: userData?.data
+    })
+  }
+}
+
+export const clearUser = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: SET_USER,
+      payload: {}
     })
   }
 }
