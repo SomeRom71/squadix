@@ -109,3 +109,33 @@
 .change {
   margin-top: 12px;
 }
+
+.item {
+  margin-top: 18px;
+  color: gray;
+}
+
+.subtitle {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+}
+
+.name {
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.description {
+  margin-top: 24px;
+}
+
+.text {
+  font-size: 14px;
+  color: gray;
+}

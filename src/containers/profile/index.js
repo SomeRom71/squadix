@@ -6,6 +6,7 @@ import moment from 'moment';
 import Layout from '../layout';
 
 import s from './profile.module.scss';
+import { Link } from 'react-router-dom';
 
 const ProfileContainer = () => {
 
@@ -42,7 +43,6 @@ const ProfileContainer = () => {
       <div className={s.container}>
         {profilePictureUrl && <img className={s.img} src={profilePictureUrl} alt="avatar" />}
         <span className={s.name}>{displayName}</span>
-
         {/* <div className={s.item}>
           <span className={s.subtitle}>Дата рождения</span>
           {moment(birthday).format('DD.MM.yyyy')}
