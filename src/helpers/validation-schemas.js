@@ -42,6 +42,8 @@ export const registerSchema = yup.object().shape({
   
 export const postSchema = yup.object().shape({
   description: yup.string().required('Введите описание'),
+  eventLatitude: yup.string().required('Введите широту'),
+  eventLongitude: yup.string().required('Введите долготу'),
 });
 
 export const productSchema = yup.object().shape({

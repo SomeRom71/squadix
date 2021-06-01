@@ -28,3 +28,7 @@ export const addEventsPostComment = (id, data) => {
 export const likeEvent = (id) => {
   return axios.put(`${API_URL}events/${id}/like`)
 }
+
+export const getAddressByCoords = (lan, lon) => {
+  return axios.get(`https://eu1.locationiq.com/v1/reverse.php?key=7166ec2458efb8&lat=${lan}&lon=${lon}&format=json`);
+}
