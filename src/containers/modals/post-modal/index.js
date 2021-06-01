@@ -32,7 +32,8 @@ const PostModal = ({ closeModal, addPost, isEvent }) => {
 
     try {
 
-      const address = await getAddressByCoords(data.eventLatitude, data.eventLongitude);
+      // const address = await getAddressByCoords(data.eventLatitude, data.eventLongitude);
+      // `${address.road}, ${address.house_number}, ${address.city}`
 
       await addPost({
         ...data, 
@@ -41,7 +42,7 @@ const PostModal = ({ closeModal, addPost, isEvent }) => {
         ...(isEvent && { 
           eventDate,
           startTime: eventDate,
-          eventAddress: `${address.road}, ${address.house_number}, ${address.city}`
+          eventAddress: 'unknown address'
         }),
       });
       closeModal();

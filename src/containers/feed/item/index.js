@@ -30,6 +30,7 @@ const FeedItem = ({
     eventDate,
     eventLatitude,
     eventLongitude,
+    eventAddress,
     startTime
   },
   onLike, 
@@ -99,6 +100,7 @@ const FeedItem = ({
       </div>
       {eventDate && <div>Дата: <b>{moment(eventDate).format('DD.MM.yyyy')}</b></div>}
       {startTime && <div>Время: <b>{moment(startTime).format('HH:mm')}</b></div>}
+      {eventAddress && <div>Адрес: <b>{eventAddress}</b></div>}
       {shortDescription && <h4>{shortDescription}</h4>}
       <p>
         {description?.length > 255 && !isPost ? description.slice(0, 255) + '...' : description}
