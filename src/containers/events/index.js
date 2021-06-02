@@ -51,7 +51,7 @@ const EventsContainer = () => {
 
   return (
     <Layout>
-      {/* {addPermission && <AddButton onClick={openPostModal} />} */}
+      {addPermission && <AddButton onClick={openPostModal} />}
       <Feed
         onLike={eventLikeHandler}
         isLoading={isLoading}

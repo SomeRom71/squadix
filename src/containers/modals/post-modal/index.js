@@ -30,10 +30,13 @@ const PostModal = ({ closeModal, addPost, isEvent }) => {
       return;
     }
 
-    try {
+    let address = {};
 
-      // const address = await getAddressByCoords(data.eventLatitude, data.eventLongitude);
-      // `${address.road}, ${address.house_number}, ${address.city}`
+    try {
+      
+      if (isEvent) {
+        address = await getAddressByCoords(data.eventLatitude, data.eventLongitude);
+      }
 
       await addPost({
         ...data, 
@@ -42,13 +45,13 @@ const PostModal = ({ closeModal, addPost, isEvent }) => {
         ...(isEvent && { 
           eventDate,
           startTime: eventDate,
-          eventAddress: 'unknown address'
+          eventAddress: `${address.address.road}, ${address.address.house_number}, ${address.address.city}`
         }),
       });
       closeModal();
       toast.success('Пост успешно добавлен');
     } catch (e) {
-      toast.error(ERRORS[e?.response?.data?.message]);
+      toast.error(ERRORS[e?.response?.data?.message] || 'Ошибка');
     }
   }
 
