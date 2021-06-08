@@ -61,8 +61,24 @@
 
 .footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.btn {
+  width: auto;
+  padding: 2px 10px;
+  &:disabled {
+    opacity: .2;
+    cursor: not-allowed;
+  }
 }
 
 .tag {

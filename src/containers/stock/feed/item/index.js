@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
+import moment from 'moment';
 import UserPreview from '../../../../components/user-preview';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FaRegCopy, FaExternalLinkAlt } from 'react-icons/fa';
@@ -8,6 +9,7 @@ import Tag from '../../../../components/tag';
 import FSLightbox from 'fslightbox-react';
 
 import s from './item.module.scss';
+import Button from '../../../../components/button';
 
 const FeedItem = ({
   info: {
@@ -26,9 +28,12 @@ const FeedItem = ({
     authorName,
     authorAvatarUrl,
     createdAt,
+    upTime,
     views
   }, 
   isPost,
+  meId,
+  upProduct,
   className
 }) => {
 
@@ -43,6 +48,8 @@ const FeedItem = ({
     navigator.clipboard.writeText(linkToCopy);
     toast.success('Ссылка скопирована.');
   }
+
+  const canUpProduct = moment(new Date).diff(upTime, 'hours') > 24;
 
   return (
     <div className={cn(s.item, {[s.promo]: promoUrl}, className)}>
@@ -116,11 +123,22 @@ const FeedItem = ({
       </div>
       {isPost && <p>{description}</p>}
       <div className={s.footer}>
-        {category && <Tag className={s.tag} text={category} />}
-        {region && <Tag className={s.tag} text={region} />}
-        {postalDeliveryAvailable && <Tag className={s.tag} text="Доставка почтой" />}
-        {reserved && <Tag className={s.tag} text="Зарезервировано" />}
-        <span className={s.price}>{price} BYN</span>
+        {meId === authorId && isPost &&
+          <Button
+            styleType="transparent"
+            text="Поднять товар"
+            className={s.btn}
+            onClick={() => upProduct(id)}
+            disabled={!canUpProduct}
+          />
+        }
+        <div className={s.tags}>
+          {category && <Tag className={s.tag} text={category} />}
+          {region && <Tag className={s.tag} text={region} />}
+          {postalDeliveryAvailable && <Tag className={s.tag} text="Доставка почтой" />}
+          {reserved && <Tag className={s.tag} text="Зарезервировано" />}
+          <span className={s.price}>{price} BYN</span>
+        </div>
       </div>
     </div>
   )

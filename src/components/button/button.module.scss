@@ -22,4 +22,10 @@
   &.red {
     background-color: rgb(238, 134, 134);
   }
+  &.transparent {
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    border-radius: 14px;
+    color: $primary-color;
+  }
 }

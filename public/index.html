@@ -10,6 +10,22 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Социальная сеть страйкболиста">
     <meta property="og:description" content="Лучший способ найти единомышленников и оставаться на связи">
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyBWHJILKhbXxJTjNKr7xX-A_WoWgVsxzCg",
+        authDomain: "squadix.firebaseapp.com",
+        databaseURL: "https://squadix.firebaseio.com",
+        projectId: "squadix",
+        storageBucket: "squadix.appspot.com",
+        messagingSenderId: "793773567214",
+        appId: "1:793773567214:web:41757d789cd691e4b317ff",
+        measurementId: "G-T6F8KVJ934"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

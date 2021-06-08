@@ -23,3 +23,8 @@ export const getProduct = (id) => {
 export const addProduct = (data) => {
   return axios.post(`${API_URL}products/`, data)
 }
+
+export const upProduct = (id) => {
+  return axios.patch(`${API_URL}products/${id}/up`)
+}
+
