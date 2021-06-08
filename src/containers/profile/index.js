@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
-import { setUser } from '../../actions/user-actions';
+import { setUser, clearUser } from '../../actions/user-actions';
 import moment from 'moment';
 import Layout from '../layout';
 
 import s from './profile.module.scss';
+import { Link } from 'react-router-dom';
 
 const ProfileContainer = () => {
 
@@ -33,6 +34,8 @@ const ProfileContainer = () => {
     (async () => {
       await dispatch(setUser(id));
     })()
+
+    return () => dispatch(clearUser());
   }, [me]);
 
   return (
@@ -40,32 +43,30 @@ const ProfileContainer = () => {
       <div className={s.container}>
         {profilePictureUrl && <img className={s.img} src={profilePictureUrl} alt="avatar" />}
         <span className={s.name}>{displayName}</span>
-
-        <div className={s.item}>
+        {/* <div className={s.item}>
           <span className={s.subtitle}>Дата рождения</span>
           {moment(birthday).format('DD.MM.yyyy')}
-        </div>
-        <div className={s.item}>
+        </div> */}
+        {country && <div className={s.item}>
           <span className={s.subtitle}>Страна</span>
           {country}
-        </div>
-        <div className={s.item}>
+        </div>}
+        {city && <div className={s.item}>
           <span className={s.subtitle}>Город</span>
           {city}
-        </div>
-        <div className={s.item}>
+        </div>}
+        {team && <div className={s.item}>
           <span className={s.subtitle}>Команда</span>
           {team}
-        </div>
-        <div className={s.item}>
+        </div>}
+        {/* <div className={s.item}>
           <span className={s.subtitle}>Телефон</span>
           {phone}
-        </div>
-
-        <div className={s.description}>
+        </div> */}
+        {description && <div className={s.description}>
           О себе:
           <p className={s.text}>{description}</p>
-        </div>
+        </div>}
       </div>
     </Layout>
   )

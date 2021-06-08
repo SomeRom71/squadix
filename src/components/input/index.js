@@ -3,12 +3,12 @@ import cn from 'classnames';
 
 import s from './input.module.scss';
 
-const Input = ({label, className, error, onChange, value, ...props}) => {
+const Input = ({label, wrapperClassname, className, error, onChange, value, ...props}) => {
 
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className={s.container}>
+    <div className={cn(s.container, wrapperClassname)}>
       {label && <span className={s.label}>{label}</span>}
       <div className={cn(s.wrap, className, {[s.active]: isFocused})}>
         <input

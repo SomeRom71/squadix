@@ -44,7 +44,7 @@ const FeedItem = ({
   const [isSliderShow, setIsSliderShow] = useState(false);
 
   const copyLink = () => {
-    const linkToCopy = isPost ? pathname : `${pathname}/${id}`;
+    const linkToCopy = isPost ? window.location.origin + pathname : `${window.location.origin}${pathname}/${id}`;
     navigator.clipboard.writeText(linkToCopy);
     toast.success('Ссылка скопирована.');
   }
@@ -90,9 +90,11 @@ const FeedItem = ({
             <FaExternalLinkAlt />
           </a>
           : <Link
-            className={s.headerBtn}
-            to={isPost ? `/${backURL[1]}` : `${pathname}/${id}`}
-            title={`Перейти к ${isPost ? 'ленте' : 'посту'}`} 
+              target={isPost ? '_self' : '_blank'} 
+              rel="noopener noreferrer"
+              className={s.headerBtn}
+              to={isPost ? `/${backURL[1]}` : `${pathname}/${id}`}
+              title={`Перейти к ${isPost ? 'ленте' : 'посту'}`} 
           >
             <FaExternalLinkAlt />
           </Link>

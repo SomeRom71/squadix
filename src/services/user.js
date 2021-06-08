@@ -17,6 +17,10 @@ export const sendAvatar = (file) => {
   return axios.post(`${API_URL}users/me/avatar`, file)
 }
 
+export const deleteAvatar = () => {
+  return axios.delete(`${API_URL}users/me/avatar`)
+}
+
 export const sendUserData = (data) => {
   return axios.put(`${API_URL}users/me`, data)
 }

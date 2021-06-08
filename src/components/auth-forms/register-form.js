@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { ERRORS } from '../../constants/error.constants';
 import { useHistory } from 'react-router-dom';
 import { LOGIN_PATH } from '../../constants/routes.constants';
+import InputMask from 'react-input-mask';
 
 import s from './auth-form.module.scss';
 
@@ -43,7 +44,7 @@ const RegisterForm = () => {
           className={s.input}
           placeholder='Отображаемое имя'
           onChange={(value) => setValue('displayName', value)}
-          error={errors?.name?.message}
+          error={errors?.displayName?.message}
         />
         <Input 
           className={s.input}
@@ -65,12 +66,18 @@ const RegisterForm = () => {
           onChange={(value) => setValue('confirmPassword', value)}
           error={errors?.confirmPassword?.message}
         />
-        <Input 
-          className={s.input}
-          placeholder='Телефон'
+        <InputMask 
+          mask="+375 99 999 99 99"
+          name="phone"
           onChange={(value) => setValue('phone', value)}
-          error={errors?.phone?.message}
-        />
+        >
+          {(inputProps) => <Input 
+            className={s.input}
+            placeholder='Телефон'
+            value={inputProps.value}
+            error={errors?.phone?.message}
+          />}
+        </InputMask>
         <Button
           className={s.btn}
           type='submit'
