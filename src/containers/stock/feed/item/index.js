@@ -7,6 +7,7 @@ import { FaRegCopy, FaExternalLinkAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import Tag from '../../../../components/tag';
 import FSLightbox from 'fslightbox-react';
+import { ROLES } from '../../../../constants/user.constants';
 
 import s from './item.module.scss';
 import Button from '../../../../components/button';
@@ -32,7 +33,7 @@ const FeedItem = ({
     views
   }, 
   isPost,
-  meId,
+  me,
   upProduct,
   className
 }) => {
@@ -49,7 +50,8 @@ const FeedItem = ({
     toast.success('Ссылка скопирована.');
   }
 
-  const canUpProduct = moment(new Date).diff(upTime, 'hours') > 24;
+  const isAdmin = me?.roles?.includes(ROLES.admin);
+  const canUpProduct = moment(new Date).diff(upTime, 'hours') > 24 || isAdmin;
 
   return (
     <div className={cn(s.item, {[s.promo]: promoUrl}, className)}>
@@ -125,7 +127,7 @@ const FeedItem = ({
       </div>
       {isPost && <p>{description}</p>}
       <div className={s.footer}>
-        {meId === authorId && isPost &&
+        {(me?.id === authorId || isAdmin) && isPost &&
           <Button
             styleType="transparent"
             text="Поднять товар"

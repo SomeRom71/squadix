@@ -1,4 +1,4 @@
-import { getCategories, getProducts, getProduct } from '../services/stock';
+import { getCategories, getProducts, getProduct, upProduct } from '../services/stock';
 import {
   SET_CATEGORIES,
   SET_FILTERS,
@@ -53,6 +53,17 @@ export const clearStockPost = (id) => {
     dispatch({
       type: SET_POST,
       payload: {}
+    })
+  }
+}
+
+export const upProductAction = async (id) => {
+  return async (dispatch) => {
+    const product = await upProduct(id);
+    
+    dispatch({
+      type: SET_POST,
+      payload: product?.data
     })
   }
 }

@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import Layout from '../../layout';
-import { upProduct } from '../../../services/stock';
+import { upProductAction } from '../../../actions/stock-actions';
 import { toast } from 'react-toastify';
 import { ERRORS } from '../../../constants/error.constants';
 
@@ -23,7 +23,7 @@ const PostContainer = () => {
 
   const upProductHandler = async (id) => {
     try {
-      await upProduct(id);
+      await dispatch(upProductAction(id));
       toast.success('Товар успешно обновлен');
     } catch (e) {
       toast.error(ERRORS[e.response.data.message] || e.response.data.message);
