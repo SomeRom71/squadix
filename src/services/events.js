@@ -30,5 +30,7 @@ export const likeEvent = (id) => {
 }
 
 export const getAddressByCoords = (lan, lon) => {
-  return axios.get(`https://eu1.locationiq.com/v1/reverse.php?key=7166ec2458efb8&lat=${lan}&lon=${lon}&format=json`);
+  return fetch(`https://eu1.locationiq.com/v1/reverse.php?key=7166ec2458efb8&lat=${lan}&lon=${lon}&format=json`, {method: 'GET'})
+    .then(data => data.json())
+    .catch(error => {throw new Error('Ошибка')})
 }
