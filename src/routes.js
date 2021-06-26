@@ -10,6 +10,8 @@ import NewsPost from './pages/news-post';
 import EventsPost from './pages/events-post';
 import StockPost from './pages/stock-post';
 import Profile from './pages/profile';
+import ProfilePosts from './pages/profile-posts';
+import ProfileProducts from './pages/profile-products';
 import Me from './pages/me';
 import Policy from './pages/static/policy';
 import Rules from './pages/static/rules';
@@ -33,7 +35,9 @@ import {
   TERMS_PATH,
   APPS_PATH,
   RESTORE_PATH,
-  RESTORE_TOKEN_PATH
+  RESTORE_TOKEN_PATH,
+  PROFILE_POSTS_PATH,
+  PROFILE_PRODUCTS_PATH
 } from './constants/routes.constants';
 
 const Routes = () => (
@@ -48,7 +52,9 @@ const Routes = () => (
     <Route path={NEWS_POST_PATH} component={NewsPost} />
     <Route path={EVENTS_POST_PATH} component={EventsPost} />
     <Route path={STOCK_POST_PATH} component={StockPost} />
-    <Route path={PROFILE_PATH} component={Profile} />
+    <Route path={PROFILE_PATH} exact component={Profile} />
+    <Route path={PROFILE_POSTS_PATH} component={ProfilePosts} />
+    <Route path={PROFILE_PRODUCTS_PATH} component={ProfileProducts} />
     <Route path={ME_PATH} component={Me} />
     <Route path={POLICY_PATH} component={Policy} />
     <Route path={RULES_PATH} component={Rules} />

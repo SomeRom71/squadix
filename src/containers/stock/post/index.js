@@ -41,7 +41,7 @@ const PostContainer = () => {
         className={s.item} 
         info={post}
         isPost
-        meId={me?.id}
+        me={me}
         upProduct={upProductHandler}
       />
     </Layout>

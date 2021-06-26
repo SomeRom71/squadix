@@ -15,7 +15,7 @@ const ProfileContainer = () => {
   const history = useHistory();
 
   const me = useSelector(state => state.user.me);
-  const { 
+  const {
     displayName, 
     profilePictureUrl,
     country,
@@ -23,7 +23,9 @@ const ProfileContainer = () => {
     description,
     birthday,
     phone,
-    team 
+    team,
+    totalPosts,
+    totalProducts,
   } = useSelector(state => state.user.profile);
   
   useEffect(() => {
@@ -67,6 +69,20 @@ const ProfileContainer = () => {
           О себе:
           <p className={s.text}>{description}</p>
         </div>}
+        {/* <div className={s.links}>
+          <Link
+            className={s.link}
+            to={`/profile/${id}/posts`}
+          >
+            Постов: {totalPosts}
+          </Link>
+          <Link
+            className={s.link}
+            to={`/profile/${id}/products`}
+          >
+            Товаров: {totalProducts}
+          </Link>
+        </div> */}
       </div>
     </Layout>
   )

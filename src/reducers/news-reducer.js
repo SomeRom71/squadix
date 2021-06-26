@@ -7,7 +7,8 @@ import {
   SET_NEWS_COMMENT,
   LIKE_NEWS_POST,
   CLEAR_NEWS,
-  ADD_NEWS_POST
+  ADD_NEWS_POST,
+  SET_PROFILE_NEWS
 } from '../constants/actions.constants';
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
   totalPages: 0,
   content: [],
   post: {},
-  comments: []
+  comments: [],
+  profileNews: [],
 };
 
 export default function newsReducer(state = initialState, action) {
@@ -24,6 +26,11 @@ export default function newsReducer(state = initialState, action) {
       return {
         ...state,
         ...action.payload,
+      };
+    case SET_PROFILE_NEWS:
+      return {
+        ...state,
+        profileNews: action.payload,
       };
     case SET_NEWS_POST:
       return {

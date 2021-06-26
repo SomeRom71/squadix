@@ -10,6 +10,8 @@ export const NEWS_POST_PATH = '/news/:id';
 export const EVENTS_POST_PATH = '/events/:id';
 export const STOCK_POST_PATH = '/products/:id';
 export const PROFILE_PATH = '/profile/:id';
+export const PROFILE_POSTS_PATH = '/profile/:id/posts';
+export const PROFILE_PRODUCTS_PATH = '/profile/:id/products';
 export const ME_PATH = '/me';
 
 export const POLICY_PATH = '/policy';

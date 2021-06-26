@@ -13,6 +13,7 @@ export const ADD_EVENTS_POST = 'addEventsPost';
 // NEWS ACTIONS
 
 export const SET_NEWS = 'setNews';
+export const SET_PROFILE_NEWS = 'setProfileNews';
 export const SET_NEWS_POST = 'setNewsPost';
 export const SET_NEWS_POST_COMMENTS = 'setNewsPostComments';
 export const CLEAR_NEWS_POST = 'clearNewsPost';

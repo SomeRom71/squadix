@@ -36,3 +36,20 @@
     fill: rgb(245, 0, 87);
   }
 }
+
+.media {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: filter .2s ease;
+  &:hover {
+    filter: brightness(.6);
+  }
+}

@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../../components/button';
 import { useForm } from 'react-hook-form';
 import Modal from '../../../components/modal';
-
+import { uploadImage } from '../../../helpers/form-helpers';
 import s from './comment-modal.module.scss';
 
 const CommentModal = ({ closeModal, addComment }) => {
 
+  const [images, setImages] = useState([]);
   const { handleSubmit, formState: {errors}, register } = useForm();
 
   const onComment = (data) => {
-    addComment(data);
+    addComment({...data, imageUrls: images});
     closeModal();
   }
 
@@ -27,6 +28,13 @@ const CommentModal = ({ closeModal, addComment }) => {
           })}
         />
         <span className={s.error}>{errors?.text?.message}</span>
+        <input 
+          type="file"
+          multiple 
+          onChange={(e) => uploadImage(e, setImages)}
+          accept="image/jpeg, image/png"
+          className={s.file}
+        />
         <Button 
           text="Отправить"
           type="submit"

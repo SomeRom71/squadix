@@ -5,6 +5,15 @@ export const getNews = (page) => {
   return axios.get(`${API_URL}posts?page=${page}`)
 }
 
+export const getAuthorNews = (id, page) => {
+  return axios.get(`${API_URL}posts/`, {
+    params: {
+      authorId: id,
+      page
+    }
+  })
+}
+
 export const getNewsPostComments = (id) => {
   return axios.get(`${API_URL}posts/${id}/comments`)
 }

@@ -70,7 +70,7 @@ const FeedItem = ({
         {<Link
           target={isPost ? '_self' : '_blank'}
           className={s.headerBtn}
-          to={isPost ? `/${backURL[1]}` : `${pathname}/${id}`}
+          to={isPost ? `/${backURL[1]}` : `/${pathname}/${id}`}
           title={`Перейти к ${isPost ? 'ленте' : 'посту'}`} 
         >
           <FaExternalLinkAlt />

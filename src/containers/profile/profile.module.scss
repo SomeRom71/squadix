@@ -44,3 +44,24 @@
   font-size: 14px;
   color: gray;
 }
+
+.links {
+  display: flex;
+  height: 40px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  transition: background-color .3s ease;
+  &:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+}

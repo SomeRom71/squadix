@@ -6,7 +6,7 @@ import s from './feed.module.scss';
 import Loader from '../../components/loader';
 import Pagination from '../../components/pagination';
 
-const Feed = ({list, totalPages, onChangePage, isLoading, onLike}) => {
+const Feed = ({list, totalPages, onChangePage, isLoading, onLike, pathname}) => {
 
   return (
     <div className={s.feed}>
@@ -23,6 +23,7 @@ const Feed = ({list, totalPages, onChangePage, isLoading, onLike}) => {
           className={s.item}
           key={item.id} 
           info={item} 
+          pathname={pathname}
         />
       ))}
     </div>

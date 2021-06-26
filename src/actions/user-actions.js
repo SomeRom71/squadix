@@ -1,4 +1,6 @@
 import { me, getUser, sendAvatar, sendUserData, deleteAvatar } from '../services/user';
+import { getAuthorNews } from '../services/news';
+import { getAuthorProduct } from '../services/stock';
 import { SET_ME, SET_USER, SET_AVATAR, REMOVE_AVATAR } from '../constants/actions.constants';
 
 export const setMe = (token) => {
@@ -33,9 +35,15 @@ export const removeAvatar = () => {
 export const setUser = (id) => {
   return async (dispatch) => {
     const userData = await getUser(id);
+    const userPost = await getAuthorNews(id);
+    const userProducts = await getAuthorProduct(id);
     dispatch({
       type: SET_USER,
-      payload: userData?.data
+      payload: {
+        ...userData?.data,
+        totalPosts: userPost?.data.totalElements,
+        totalProducts: userProducts?.data.totalElements
+      }
     })
   }
 }

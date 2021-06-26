@@ -20,6 +20,14 @@ export const getProduct = (id) => {
   return axios.get(`${API_URL}products/${id}`)
 }
 
+export const getAuthorProduct = (id) => {
+  return axios.get(`${API_URL}products/`, {
+    params: {
+      authorId: id
+    }
+  })
+}
+
 export const addProduct = (data) => {
   return axios.post(`${API_URL}products/`, data)
 }
