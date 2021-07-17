@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../../components/logo';
 import { useSelector } from 'react-redux';
-import { NEWS_PATH, EVENTS_PATH, STOCK_PATH, HOME_PATH } from '../../../constants/routes.constants';
+import { NEWS_PATH, EVENTS_PATH, STOCK_PATH, HOME_PATH, SEARCH_PATH } from '../../../constants/routes.constants';
 
 import s from './header.module.scss';
 import HeaderMenu from '../../../components/header-menu';
@@ -24,6 +24,9 @@ const Header = () => {
       </NavLink>
       <NavLink to={STOCK_PATH} className={s.link} activeClassName="active-nav">
         Барахолка
+      </NavLink>
+      <NavLink to={SEARCH_PATH} className={s.link} activeClassName="active-nav">
+        Поиск
       </NavLink>
       <HeaderMenu 
         className={s.me}

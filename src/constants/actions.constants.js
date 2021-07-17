@@ -41,3 +41,8 @@ export const SET_ME = 'setMe';
 export const SET_USER = 'setUser';
 export const SET_AVATAR = 'setAvatar';
 export const REMOVE_AVATAR = 'removeAvatar';
+
+// SEARCH ACTIONS
+
+export const SET_SEARCH_RESULT = 'setSearchResult';
+export const CLEAR_SEARCH_RESULT = 'clearSearchResult';

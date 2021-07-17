@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables';
+
 .feed {
   max-width: 800px;
   margin: 24px auto 0;
@@ -5,4 +7,19 @@
 
 .item {
   margin-bottom: 24px;
+}
+
+.userItem {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 1px solid rgba(0,0,0,.3);
+  border-radius: 15px;
+  padding: 10px 15px;
+  margin-bottom: 12px;
+  transition: background-color .3s ease;
+  &:hover {
+    background-color: rgba($primary-color, .5);
+  }
 }

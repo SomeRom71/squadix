@@ -6,6 +6,7 @@ import Reset from './pages/reset';
 import Events from './pages/events';
 import Stock from './pages/stock';
 import News from './pages/news';
+import Search from './pages/search';
 import NewsPost from './pages/news-post';
 import EventsPost from './pages/events-post';
 import StockPost from './pages/stock-post';
@@ -37,7 +38,8 @@ import {
   RESTORE_PATH,
   RESTORE_TOKEN_PATH,
   PROFILE_POSTS_PATH,
-  PROFILE_PRODUCTS_PATH
+  PROFILE_PRODUCTS_PATH,
+  SEARCH_PATH
 } from './constants/routes.constants';
 
 const Routes = () => (
@@ -48,6 +50,7 @@ const Routes = () => (
     <Route path={REGISTER_PATH} component={Register} />
     <Route path={EVENTS_PATH} exact component={Events} />
     <Route path={STOCK_PATH} exact component={Stock} />
+    <Route path={SEARCH_PATH} exact component={Search} />
     <Route path={NEWS_PATH} exact component={News} />
     <Route path={NEWS_POST_PATH} component={NewsPost} />
     <Route path={EVENTS_POST_PATH} component={EventsPost} />

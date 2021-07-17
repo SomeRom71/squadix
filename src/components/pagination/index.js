@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import s from './pagination.module.scss';
 
-const Pagination = ({totalPages, onChangePage}) => {
+const Pagination = ({totalPages, onChangePage, ...props}) => {
   return (
     <ReactPaginate 
       pageCount={totalPages}
@@ -14,6 +14,7 @@ const Pagination = ({totalPages, onChangePage}) => {
       activeClassName={s.paginationActive}
       previousLabel={<FaAngleLeft />}
       nextLabel={<FaAngleRight />}
+      {...props}
     />
   )
 }

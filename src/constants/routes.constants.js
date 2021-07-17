@@ -5,6 +5,7 @@ export const RESTORE_PATH = '/reset';
 export const RESTORE_TOKEN_PATH = '/reset/:token';
 export const EVENTS_PATH = '/events';
 export const STOCK_PATH = '/products';
+export const SEARCH_PATH = '/search';
 export const NEWS_PATH = '/news';
 export const NEWS_POST_PATH = '/news/:id';
 export const EVENTS_POST_PATH = '/events/:id';
